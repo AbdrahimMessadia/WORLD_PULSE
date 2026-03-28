@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌍 WORLD PULSE</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Orbitron:wght@400;700;900&display=swap');
+:root{
+  --bg:#020912;--bg2:#040f20;--card:rgba(4,18,45,0.92);
+  --c1:#00d4ff;--c2:#ffd700;--c3:#7b2fff;--c4:#ff3355;--c5:#00ff88;--c6:#ff8c00;
+  --txt:#e4f2ff;--dim:rgba(228,242,255,0.4);
+  --b1:rgba(0,212,255,0.18);--b2:rgba(255,215,0,0.15);
+  --s1:0 0 24px rgba(0,212,255,0.4);--s2:0 0 24px rgba(255,215,0,0.4);
+  --r:15px;--r2:10px;--hh:62px;--th:44px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;height:100%;}
+body{background:var(--bg);color:var(--txt);font-family:'Tajawal',sans-serif;overflow-x:hidden;min-height:100vh;-webkit-overflow-scrolling:touch;}
+::-webkit-scrollbar{width:3px;height:3px;}
+::-webkit-scrollbar-thumb{background:var(--c1);border-radius:2px;}
+
+/* STARS */
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none;}
+
+/* LOADING */
+#ld{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;}
+.ld-g{font-size:72px;animation:sp 2s linear infinite;}
+@keyframes sp{to{transform:rotate(360deg)}}
+.ld-t{font-family:'Orbitron',monospace;font-size:20px;font-weight:900;background:linear-gradient(90deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:3px;}
+.ld-bw{width:280px;height:3px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden;}
+.ld-bf{height:100%;background:linear-gradient(90deg,var(--c1),var(--c3),var(--c2));animation:lb 3s ease forwards;}
+@keyframes lb{from{width:0}to{width:100%}}
+.ld-s{font-size:11px;color:var(--dim);font-family:'Orbitron',monospace;letter-spacing:1px;min-height:16px;transition:opacity .3s;}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(2,6,16,0.97);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid var(--b1);height:var(--hh);display:flex;align-items:center;gap:8px;padding:0 10px;}
+.logo{display:flex;align-items:center;gap:7px;flex-shrink:0;}
+.logo-orb{width:34px;height:34px;background:linear-gradient(135deg,var(--c1),var(--c3));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;animation:porb 2.5s infinite;flex-shrink:0;}
+@keyframes porb{0%,100%{box-shadow:0 0 10px rgba(0,212,255,.5)}50%{box-shadow:0 0 30px rgba(0,212,255,1),0 0 55px rgba(0,212,255,.3)}}
+.logo-tx{font-family:'Orbitron',monospace;font-size:12px;font-weight:900;background:linear-gradient(90deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:1px;white-space:nowrap;}
+.logo-sub{font-size:7px;color:var(--c2);letter-spacing:1px;font-family:'Orbitron',monospace;}
+.sw{flex:1;max-width:280px;position:relative;}
+.si{width:100%;background:rgba(0,212,255,.05);border:1px solid var(--b1);color:var(--txt);padding:7px 36px 7px 12px;border-radius:22px;font-family:'Tajawal',sans-serif;font-size:13px;outline:none;transition:all .3s;}
+.si:focus{border-color:var(--c1);box-shadow:var(--s1);}
+.si::placeholder{color:var(--dim);}
+.sic{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--c1);font-size:13px;pointer-events:none;}
+.sr{position:absolute;top:calc(100%+5px);left:0;right:0;background:rgba(2,10,28,.99);border:1px solid var(--b1);border-radius:var(--r2);display:none;z-index:300;max-height:260px;overflow-y:auto;box-shadow:0 20px 55px rgba(0,0,0,.9);}
+.sr.show{display:block;}
+.sri{padding:9px 12px;cursor:pointer;display:flex;align-items:center;gap:9px;font-size:13px;border-bottom:1px solid rgba(0,212,255,.05);transition:background .2s;}
+.sri:hover{background:rgba(0,212,255,.09);}
+.sri-f{font-size:18px;}.sri-n{font-weight:600;}.sri-c{font-size:11px;color:var(--dim);}
+nav{display:flex;align-items:center;gap:4px;flex-shrink:0;margin-right:auto;overflow-x:auto;-ms-overflow-style:none;scrollbar-width:none;}
+nav::-webkit-scrollbar{display:none;}
+.nb{background:transparent;border:1px solid var(--b1);color:var(--txt);padding:5px 10px;border-radius:20px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:11px;font-weight:600;transition:all .3s;display:flex;align-items:center;gap:3px;white-space:nowrap;flex-shrink:0;}
+.nb:hover,.nb.active{background:rgba(0,212,255,.14);border-color:var(--c1);color:var(--c1);}
+.nb-i{width:32px;height:32px;border-radius:50%;padding:0;justify-content:center;font-size:14px;}
+
+/* TICKER */
+.ticker{position:fixed;top:var(--hh);left:0;right:0;z-index:999;background:rgba(0,5,16,.98);border-bottom:1px solid var(--b2);height:var(--th);display:flex;align-items:center;overflow:hidden;}
+.tkl{background:var(--c4);color:#fff;padding:0 12px;font-size:9px;font-weight:800;font-family:'Orbitron',monospace;letter-spacing:1px;height:100%;display:flex;align-items:center;gap:4px;flex-shrink:0;}
+.tkd{width:6px;height:6px;border-radius:50%;background:#fff;animation:bl .7s infinite;}
+@keyframes bl{0%,100%{opacity:1}50%{opacity:.1}}
+.tktr{flex:1;overflow:hidden;}
+.tkin{display:flex;gap:50px;animation:tk 60s linear infinite;white-space:nowrap;width:max-content;}
+.tkin:hover{animation-play-state:paused;}
+@keyframes tk{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tki{font-size:12px;color:var(--txt);cursor:pointer;display:flex;align-items:center;gap:7px;flex-shrink:0;transition:color .2s;}
+.tki:hover{color:var(--c1);}
+.tki-d{width:5px;height:5px;border-radius:50%;background:var(--c4);animation:bl .8s infinite;flex-shrink:0;}
+
+/* MAIN — scroll fix */
+main{padding-top:calc(var(--hh) + var(--th));min-height:100vh;position:relative;z-index:1;overflow-y:auto;}
+.tab{display:none;animation:fadeIn .3s ease;}.tab.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* === GLOBE TAB === */
+.glay{display:grid;grid-template-columns:1fr 330px;gap:12px;padding:12px;min-height:calc(100vh - var(--hh) - var(--th));}
+@media(max-width:900px){
+  .glay{grid-template-columns:1fr;}
+  .sidebar{order:-1;}
+  :root{--hh:56px;--th:38px;}
+  .logo-tx{font-size:10px;}
+  .nb{font-size:10px;padding:4px 8px;}
+}
+@media(max-width:480px){
+  .logo-sub{display:none;}
+  .sw{max-width:150px;}
+  .nb span:not(.nb-emoji){display:none;}
+}
+.gbox{position:relative;background:radial-gradient(ellipse at center,rgba(0,28,70,.6) 0%,rgba(2,4,12,.95) 70%);border:1px solid var(--b1);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;min-height:560px;}
+.ghd{padding:11px 15px;border-bottom:1px solid var(--b1);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.gttl{font-family:'Orbitron',monospace;font-size:12px;color:var(--c1);letter-spacing:2px;}
+.lbs{display:flex;gap:4px;flex-wrap:wrap;}
+.lb{background:rgba(0,212,255,.04);border:1px solid var(--b1);color:rgba(228,242,255,.65);padding:3px 9px;border-radius:9px;font-size:11px;cursor:pointer;transition:all .3s;font-family:'Tajawal',sans-serif;}
+.lb:hover,.lb.active{background:rgba(0,212,255,.18);border-color:var(--c1);color:var(--c1);}
+#gc{flex:1;width:100%;cursor:grab;min-height:460px;}
+#gc:active{cursor:grabbing;}
+.gctrl{position:absolute;bottom:14px;left:14px;display:flex;flex-direction:column;gap:5px;}
+.ctb{width:32px;height:32px;background:rgba(0,16,44,.92);border:1px solid var(--b1);border-radius:7px;color:var(--c1);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;}
+.ctb:hover{background:rgba(0,212,255,.18);box-shadow:var(--s1);}
+
+/* Country Popup */
+.cpop{position:absolute;background:rgba(2,7,24,.99);border:1px solid var(--c1);border-radius:var(--r);padding:16px;min-width:275px;max-width:315px;z-index:100;display:none;box-shadow:var(--s1),0 20px 55px rgba(0,0,0,.9);animation:pIn .28s ease;backdrop-filter:blur(18px);}
+@keyframes pIn{from{opacity:0;transform:scale(.88) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.poph{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;}
+.popf{font-size:28px;}.popn{font-size:16px;font-weight:700;}.popc{font-size:11px;color:var(--dim);}
+.popcl{background:rgba(255,50,50,.18);border:1px solid rgba(255,50,50,.4);color:var(--c4);width:25px;height:25px;border-radius:50%;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;}
+.pst{background:rgba(0,212,255,.04);border:1px solid var(--b1);border-radius:7px;padding:6px;text-align:center;}
+.pstl{font-size:9px;color:var(--dim);margin-bottom:2px;}.pstv{font-size:11px;font-weight:700;color:var(--c1);font-family:'Orbitron',monospace;}
+.pstat{display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:7px;margin-bottom:8px;font-size:12px;font-weight:600;}
+.ss{background:rgba(0,255,136,.07);border:1px solid rgba(0,255,136,.3);color:var(--c5);}
+.st{background:rgba(255,140,0,.07);border:1px solid rgba(255,140,0,.3);color:var(--c6);}
+.sc{background:rgba(255,50,50,.07);border:1px solid rgba(255,50,50,.3);color:var(--c4);}
+.pwx{background:rgba(0,212,255,.04);border:1px solid var(--b1);border-radius:7px;padding:9px;margin-bottom:9px;font-size:12px;}
+.pwxtl{color:var(--c2);font-size:10px;font-weight:700;margin-bottom:5px;}
+.wxr{display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap;}
+.wxi{display:flex;align-items:center;gap:3px;}
+.pnstl{font-size:10px;color:var(--c2);font-weight:700;margin-bottom:5px;}
+.pni{background:rgba(0,212,255,.025);border-right:2px solid var(--c1);padding:4px 8px;margin-bottom:4px;border-radius:0 5px 5px 0;font-size:11px;color:rgba(228,242,255,.8);cursor:pointer;transition:all .2s;}
+.pni:hover{background:rgba(0,212,255,.1);}
+.pact{display:flex;gap:6px;margin-top:9px;}
+.ab{flex:1;padding:6px;border-radius:7px;border:1px solid var(--b1);background:rgba(0,212,255,.07);color:var(--c1);font-size:11px;cursor:pointer;transition:all .3s;font-family:'Tajawal',sans-serif;display:flex;align-items:center;justify-content:center;gap:3px;font-weight:600;}
+.ab:hover{background:rgba(0,212,255,.2);}
+
+/* SIDEBAR */
+.sidebar{display:flex;flex-direction:column;gap:12px;}
+.scard{background:var(--card);border:1px solid var(--b1);border-radius:var(--r);overflow:hidden;backdrop-filter:blur(14px);}
+.scardh{padding:10px 13px;border-bottom:1px solid var(--b1);display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--c1);}
+.scardb{padding:12px 13px;}
+
+/* News Feed */
+.nfilt{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px;}
+.nfb{background:transparent;border:1px solid var(--b1);color:var(--dim);padding:3px 9px;border-radius:9px;font-size:10px;cursor:pointer;transition:all .3s;font-family:'Tajawal',sans-serif;}
+.nfb.active,.nfb:hover{background:rgba(0,212,255,.14);border-color:var(--c1);color:var(--c1);}
+.nfeed{max-height:360px;overflow-y:auto;}
+.nitem{padding:9px 0;border-bottom:1px solid rgba(0,212,255,.06);cursor:pointer;transition:all .2s;}
+.nitem:hover{padding-right:4px;}
+.nitem:last-child{border-bottom:none;}
+.ncat{display:inline-block;font-size:10px;padding:2px 7px;border-radius:6px;margin-bottom:3px;font-weight:700;}
+.cat-war{background:rgba(255,50,50,.2);color:var(--c4);}
+.cat-politics{background:rgba(255,50,50,.15);color:#ff8899;}
+.cat-economy{background:rgba(255,215,0,.18);color:var(--c2);}
+.cat-world{background:rgba(0,212,255,.15);color:var(--c1);}
+.cat-science{background:rgba(123,47,255,.2);color:#b080ff;}
+.cat-nature{background:rgba(0,255,136,.15);color:var(--c5);}
+.nhl{font-size:12px;color:var(--txt);line-height:1.5;margin-bottom:3px;}
+.ndesc{font-size:11px;color:var(--dim);line-height:1.4;margin-bottom:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.nmeta{font-size:10px;color:var(--dim);display:flex;gap:7px;align-items:center;flex-wrap:wrap;}
+.nsrc{color:var(--c1);}
+.ntts{background:none;border:none;color:var(--c5);cursor:pointer;font-size:14px;padding:2px 5px;border-radius:5px;transition:all .2s;}
+.ntts:hover{background:rgba(0,255,136,.1);}
+.nloading{text-align:center;padding:22px;color:var(--dim);font-size:13px;}
+.nrefresh{font-size:11px;color:var(--dim);text-align:center;padding:7px;border-top:1px solid var(--b1);cursor:pointer;transition:color .3s;}
+.nrefresh:hover{color:var(--c1);}
+.nstatus{font-size:10px;color:var(--c5);text-align:center;padding:4px;font-weight:600;}
+
+/* Power Ranking */
+.pitem{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid rgba(0,212,255,.06);cursor:pointer;transition:all .2s;}
+.pitem:hover{padding-right:4px;}.pitem:last-child{border-bottom:none;}
+.prk{font-family:'Orbitron',monospace;font-size:11px;color:var(--c2);min-width:18px;}
+.pfl{font-size:17px;}.pin{flex:1;}
+.pnm{font-size:11px;font-weight:600;}
+.pbw{height:3px;background:rgba(255,255,255,.07);border-radius:2px;margin-top:3px;overflow:hidden;}
+.pbf{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--c1),var(--c3));transition:width 1.5s ease;}
+.psc{font-family:'Orbitron',monospace;font-size:11px;color:var(--c1);}
+
+/* === COMPARE TAB === */
+.cmpsec{padding:20px;}
+.sec-ttl{font-family:'Orbitron',monospace;font-size:15px;color:var(--c2);margin-bottom:18px;display:flex;align-items:center;gap:9px;letter-spacing:2px;}
+.cmp-top{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+.cmp-sel{background:rgba(0,18,48,.8);border:1px solid var(--b1);color:var(--txt);padding:9px 13px;border-radius:10px;font-family:'Tajawal',sans-serif;font-size:13px;flex:1;min-width:160px;outline:none;}
+.cmp-sel:focus{border-color:var(--c1);}
+.btn-p{background:linear-gradient(135deg,var(--c1),var(--c3));border:none;color:#fff;padding:9px 18px;border-radius:10px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:13px;font-weight:700;transition:all .3s;}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,212,255,.4);}
+.btn-d{background:rgba(255,50,50,.12);border:1px solid rgba(255,50,50,.4);color:var(--c4);padding:9px 18px;border-radius:10px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:13px;transition:all .3s;}
+.slots{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:14px;}
+.slot{background:rgba(0,18,48,.5);border:1px dashed var(--b1);border-radius:var(--r2);padding:11px;text-align:center;min-height:78px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+.slot.filled{border-style:solid;border-color:var(--c1);background:rgba(0,212,255,.06);}
+.slot-f{font-size:24px;}.slot-n{font-size:10px;font-weight:600;}.slot-e{font-size:20px;color:var(--b1);}
+.slot-x{background:rgba(255,50,50,.15);border:none;color:var(--c4);width:18px;height:18px;border-radius:50%;cursor:pointer;font-size:10px;margin-top:2px;}
+
+/* Compare Chart */
+.cmp-chart{background:rgba(0,8,22,.7);border:1px solid var(--b1);border-radius:var(--r2);padding:18px;display:none;}
+.cmp-chart.show{display:block;}
+.cmp-chart-ttl{font-size:13px;color:var(--c2);font-weight:700;margin-bottom:16px;font-family:'Orbitron',monospace;letter-spacing:1px;}
+.cmp-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;}
+.ctab{background:rgba(0,212,255,.05);border:1px solid var(--b1);color:var(--dim);padding:4px 11px;border-radius:9px;font-size:11px;cursor:pointer;transition:all .3s;font-family:'Tajawal',sans-serif;}
+.ctab.active,.ctab:hover{background:rgba(0,212,255,.18);border-color:var(--c1);color:var(--c1);}
+.cmp-row{margin-bottom:16px;}
+.cmp-rl{font-size:12px;color:var(--dim);margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.cmp-rl-ic{font-size:14px;}
+.cbars{display:flex;flex-direction:column;gap:5px;}
+.cbi{display:flex;align-items:center;gap:8px;}
+.cbif{font-size:12px;min-width:20px;}
+.cbit{flex:1;height:8px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden;}
+.cbif2{height:100%;border-radius:4px;transition:width 1.2s ease;}
+.cbiv{font-size:11px;font-family:'Orbitron',monospace;color:var(--c1);min-width:55px;text-align:left;}
+.cmp-ai-btn{width:100%;margin-top:14px;padding:10px;border-radius:10px;background:linear-gradient(135deg,var(--c3),var(--c1));border:none;color:#fff;font-family:'Tajawal',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .3s;}
+.cmp-ai-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(123,47,255,.4);}
+
+/* === AI MODAL === */
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:5000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s;}
+.modal-ov.show{opacity:1;pointer-events:all;}
+.modal{background:rgba(2,10,30,.98);border:1px solid var(--c1);border-radius:20px;padding:24px;max-width:560px;width:100%;max-height:80vh;overflow-y:auto;box-shadow:var(--s1),0 30px 80px rgba(0,0,0,.9);animation:mIn .3s ease;}
+@keyframes mIn{from{transform:scale(.9) translateY(20px)}to{transform:scale(1) translateY(0)}}
+.modal-h{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;}
+.modal-ttl{font-family:'Orbitron',monospace;font-size:14px;color:var(--c1);letter-spacing:1px;}
+.modal-cl{background:rgba(255,50,50,.18);border:1px solid rgba(255,50,50,.4);color:var(--c4);width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.modal-body{font-size:14px;color:var(--txt);line-height:1.9;white-space:pre-wrap;}
+.modal-body.loading{color:var(--dim);font-style:italic;}
+.modal-body.loading::after{content:'...';animation:dots 1.5s infinite;}
+@keyframes dots{0%{content:''}33%{content:'.'}66%{content:'..'}100%{content:'...'}}
+
+/* === TIME TAB === */
+.tsec{padding:20px;}
+.tctrl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px;}
+.tinp{background:rgba(0,18,48,.8);border:1px solid var(--b1);color:var(--txt);padding:9px 13px;border-radius:10px;font-family:'Tajawal',sans-serif;font-size:14px;flex:1;min-width:140px;outline:none;}
+.tinp:focus{border-color:var(--c1);box-shadow:var(--s1);}
+.tl{display:flex;flex-direction:column;gap:9px;}
+.tle{display:flex;gap:13px;padding:13px;background:rgba(0,18,48,.5);border:1px solid var(--b1);border-radius:var(--r2);cursor:pointer;transition:all .3s;}
+.tle:hover{border-color:var(--c1);background:rgba(0,212,255,.05);}
+.tly{font-family:'Orbitron',monospace;font-size:12px;color:var(--c2);min-width:40px;font-weight:700;}
+.tldot{width:10px;height:10px;border-radius:50%;margin-top:3px;flex-shrink:0;}
+.tlc{flex:1;}
+.tlt{font-size:13px;font-weight:600;margin-bottom:3px;}
+.tld{font-size:11px;color:var(--dim);line-height:1.5;}
+.tlai{background:linear-gradient(135deg,var(--c3),var(--c1));border:none;color:#fff;padding:5px 12px;border-radius:7px;font-size:11px;cursor:pointer;margin-top:5px;font-family:'Tajawal',sans-serif;}
+
+/* === BUTTERFLY === */
+.bsec{padding:20px;}
+.bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-bottom:16px;}
+.bcard{background:rgba(0,18,48,.5);border:1px solid var(--b1);border-radius:var(--r2);padding:14px;cursor:pointer;transition:all .3s;}
+.bcard:hover{border-color:var(--c3);background:rgba(123,47,255,.08);transform:translateY(-3px);}
+.bcard.sel{border-color:var(--c2);background:rgba(255,215,0,.04);}
+.bic{font-size:24px;margin-bottom:7px;}
+.bttl{font-size:12px;font-weight:700;margin-bottom:4px;}
+.bdt{font-size:11px;color:var(--c2);margin-bottom:4px;}
+.bdsc{font-size:11px;color:var(--dim);line-height:1.4;}
+.bres{background:rgba(0,8,22,.8);border:1px solid var(--c3);border-radius:var(--r2);padding:18px;display:none;}
+.bres.show{display:block;}
+.bres-t{font-size:14px;color:var(--c2);font-weight:700;margin-bottom:12px;}
+.bchain{display:flex;flex-direction:column;gap:7px;}
+.bci{display:flex;gap:10px;align-items:flex-start;}
+.bcn{width:22px;height:22px;background:linear-gradient(135deg,var(--c3),var(--c1));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;}
+.bct{font-size:12px;color:rgba(228,242,255,.85);line-height:1.5;}
+.bai{background:rgba(123,47,255,.07);border:1px solid rgba(123,47,255,.3);border-radius:8px;padding:12px;margin-top:14px;font-size:12px;color:rgba(228,242,255,.85);line-height:1.7;display:none;}
+.bai.show{display:block;}
+.bai-t{font-size:11px;color:var(--c3);font-weight:700;margin-bottom:5px;}
+
+/* === TEACHER === */
+.tcsec{padding:20px;}
+.tcgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:13px;}
+.tccard{background:rgba(0,18,48,.6);border:1px solid var(--b1);border-radius:14px;padding:15px;cursor:pointer;transition:all .3s;}
+.tccard:hover{border-color:var(--c1);transform:translateY(-4px);box-shadow:0 15px 40px rgba(0,0,0,.4);}
+.tcflag{font-size:34px;margin-bottom:9px;}
+.tcname{font-size:15px;font-weight:700;margin-bottom:5px;}
+.tccap{font-size:12px;color:var(--dim);margin-bottom:8px;}
+.tcstats{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;}
+.tcs{background:rgba(0,212,255,.04);border:1px solid var(--b1);border-radius:7px;padding:6px;text-align:center;}
+.tcsl{font-size:9px;color:var(--dim);}.tcsv{font-size:12px;font-weight:700;color:var(--c1);}
+.tcaib{background:linear-gradient(135deg,var(--c3),var(--c1));border:none;color:#fff;padding:7px 14px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'Tajawal',sans-serif;font-weight:600;width:100%;}
+
+/* NOTIFICATION */
+.notif{position:fixed;bottom:20px;right:20px;background:rgba(2,12,32,.97);border:1px solid var(--c1);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:10px;z-index:4000;transform:translateX(120%);transition:transform .4s cubic-bezier(.34,1.56,.64,1);max-width:320px;box-shadow:var(--s1);}
+.notif.show{transform:translateX(0);}
+.notif-ic{font-size:22px;flex-shrink:0;}
+.notif-t{font-size:13px;font-weight:700;}
+.notif-b{font-size:11px;color:var(--dim);margin-top:2px;}
+
+/* FOOTER */
+footer{background:rgba(2,6,16,.97);border-top:1px solid var(--b1);padding:18px 20px;text-align:center;font-size:12px;color:var(--dim);position:relative;z-index:1;}
+.flogo{font-family:'Orbitron',monospace;font-size:13px;background:linear-gradient(90deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:5px;}
+.ffb{display:inline-flex;align-items:center;gap:5px;margin-top:8px;color:var(--c1);text-decoration:none;font-size:12px;transition:opacity .2s;}
+.ffb:hover{opacity:.7;}
+
+/* SHIMMER */
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+.shimmer{background:linear-gradient(90deg,rgba(0,212,255,.04) 25%,rgba(0,212,255,.12) 50%,rgba(0,212,255,.04) 75%);background-size:200% 100%;animation:shimmer 2s infinite;}
+
+/* TTS indicator */
+.tts-speaking{position:fixed;bottom:70px;right:20px;background:rgba(0,255,136,.15);border:1px solid var(--c5);border-radius:10px;padding:8px 14px;font-size:12px;color:var(--c5);z-index:3000;display:none;align-items:center;gap:7px;font-weight:600;}
+.tts-speaking.show{display:flex;}
+.tts-wave{display:flex;gap:2px;align-items:center;}
+.tts-wave span{width:3px;border-radius:2px;background:var(--c5);animation:wave 0.8s infinite;}
+.tts-wave span:nth-child(1){height:8px;animation-delay:0s;}
+.tts-wave span:nth-child(2){height:14px;animation-delay:.15s;}
+.tts-wave span:nth-child(3){height:10px;animation-delay:.3s;}
+.tts-wave span:nth-child(4){height:16px;animation-delay:.1s;}
+.tts-wave span:nth-child(5){height:8px;animation-delay:.25s;}
+@keyframes wave{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.8)}}
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<!-- LOADING -->
+<div id="ld">
+  <div class="ld-g">🌍</div>
+  <div class="ld-t">WORLD PULSE</div>
+  <div class="ld-bw"><div class="ld-bf"></div></div>
+  <div class="ld-s" id="ldst">INITIALIZING...</div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <div class="logo-orb">🌍</div>
+    <div><div class="logo-tx">WORLD PULSE</div><div class="logo-sub"> • LIVE</div></div>
+  </div>
+  <div class="sw">
+    <span class="sic">🔍</span>
+    <input class="si" id="si" placeholder="ابحث عن دولة..." autocomplete="off" oninput="onSearch(this.value)">
+    <div class="sr" id="sr"></div>
+  </div>
+  <nav>
+    <button class="nb active" onclick="switchTab('globe',this)">🌍 الكرة</button>
+    <button class="nb" onclick="switchTab('compare',this)">⚖️ مقارنة</button>
+    <button class="nb" onclick="switchTab('time',this)">⏳ التاريخ</button>
+    <button class="nb" onclick="switchTab('butterfly',this)">🦋 تأثير</button>
+    <button class="nb" onclick="switchTab('teacher',this)">📚 تعلم</button>
+    <button class="nb nb-i" onclick="toggleLang()" title="Language">🌐</button>
+    <button class="nb nb-i" onclick="toggleTheme()" id="thbtn" title="Theme">🌙</button>
+  </nav>
+</header>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="tkl"><div class="tkd"></div>LIVE</div>
+  <div class="tktr"><div class="tkin" id="tkin"><span class="tki"><span class="tki-d"></span>جاري تحميل الأخبار الحية...</span><span class="tki"><span class="tki-d"></span>Loading live news...</span></div></div>
+</div>
+
+<main>
+
+<!-- GLOBE TAB -->
+<div id="tab-globe" class="tab active">
+<div class="glay">
+  <div class="gbox">
+    <div class="ghd">
+      <div class="gttl">🌍 الكرة الأرضية التفاعلية</div>
+      <div class="lbs">
+        <button class="lb active" onclick="setLayer('all',this)">🌐 الكل</button>
+        <button class="lb" onclick="setLayer('conflict',this)">⚔️ نزاعات</button>
+        <button class="lb" onclick="setLayer('economy',this)">💰 اقتصاد</button>
+        <button class="lb" onclick="setLayer('stability',this)">🛡️ استقرار</button>
+        <button class="lb" onclick="setLayer('military',this)">🎖️ عسكري</button>
+      </div>
+    </div>
+    <canvas id="gc"></canvas>
+    <div class="gctrl">
+      <button class="ctb" onclick="zG(1.2)">+</button>
+      <button class="ctb" onclick="zG(.8)">−</button>
+      <button class="ctb" onclick="resetG()">↺</button>
+      <button class="ctb" onclick="togAR()" id="arbtn">⏸</button>
+    </div>
+    <div class="cpop" id="cpop">
+      <div class="poph">
+        <div><div class="popf" id="pf">🌍</div><div class="popn" id="pn">—</div><div class="popc" id="pc">—</div></div>
+        <button class="popcl" onclick="closePop()">✕</button>
+      </div>
+      <div class="pgrid">
+        <div class="pst"><div class="pstl">السكان</div><div class="pstv" id="pp">—</div></div>
+        <div class="pst"><div class="pstl">الناتج المحلي</div><div class="pstv" id="pg">—</div></div>
+        <div class="pst"><div class="pstl">المساحة</div><div class="pstv" id="pa">—</div></div>
+        <div class="pst"><div class="pstl">القوة العسكرية</div><div class="pstv" id="pm">—</div></div>
+      </div>
+      <div class="pstat" id="pstat"></div>
+      <div class="pwx" id="pwx">
+        <div class="pwxtl">🌤️ الطقس الآن</div>
+        <div class="wxr" id="wxr"><span style="color:var(--dim);font-size:11px">جاري التحميل...</span></div>
+      </div>
+      <div class="pnstl">📰 آخر الأخبار</div>
+      <div id="pnews"></div>
+      <div class="pact">
+        <button class="ab" onclick="addToCompare()">⚖️ قارن</button>
+        <button class="ab" onclick="aiCountry()">🤖 تحليل AI</button>
+        <button class="ab" onclick="speakCountry()">🔊 اسمع</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <div class="scard">
+      <div class="scardh">
+        📡 أخبار العالم الحية
+        <span class="tkd" style="margin-right:auto"></span>
+        <span id="ntime" style="font-size:10px;color:var(--dim);font-weight:400"></span>
+      </div>
+      <div class="scardb">
+        <div class="nfilt">
+          <button class="nfb active" onclick="filterN('all',this)">الكل</button>
+          <button class="nfb" onclick="filterN('war',this)">⚔️ حروب</button>
+          <button class="nfb" onclick="filterN('politics',this)">🏛️ سياسة</button>
+          <button class="nfb" onclick="filterN('economy',this)">💰 اقتصاد</button>
+          <button class="nfb" onclick="filterN('world',this)">🌍 عالم</button>
+          <button class="nfb" onclick="filterN('science',this)">🔬 علوم</button>
+        </div>
+        <div class="nfeed" id="nfeed"><div class="nloading shimmer">📡 جاري جلب الأخبار الحية من GNews...</div></div>
+        <div class="nstatus" id="nstatus"></div>
+        <div class="nrefresh" onclick="loadNews(true)">🔄 تحديث الأخبار الآن</div>
+      </div>
+    </div>
+    <div class="scard">
+      <div class="scardh">🏆 ترتيب القوى العالمية</div>
+      <div class="scardb"><div id="plist"></div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- COMPARE TAB -->
+<div id="tab-compare" class="tab">
+<div class="cmpsec">
+  <div class="sec-ttl">⚖️ مقارنة الدول الشاملة</div>
+  <div class="cmp-top">
+    <select id="cmpsel" class="cmp-sel"><option value="">اختر دولة للمقارنة...</option></select>
+    <button class="btn-p" onclick="addCmp()">+ إضافة</button>
+    <button class="btn-d" onclick="clearCmp()">🗑️ مسح</button>
+    <button class="btn-p" style="background:linear-gradient(135deg,var(--c3),var(--c2))" onclick="aiCompare()">🤖 تحليل AI</button>
+  </div>
+  <div class="slots" id="slots"></div>
+  <div class="cmp-chart" id="cmpchart">
+    <div class="cmp-chart-ttl">📊 المقارنة الشاملة</div>
+    <div class="cmp-tabs">
+      <button class="ctab active" onclick="setCmpTab('all',this)">🌐 الكل</button>
+      <button class="ctab" onclick="setCmpTab('economy',this)">💰 اقتصاد</button>
+      <button class="ctab" onclick="setCmpTab('military',this)">🎖️ عسكري</button>
+      <button class="ctab" onclick="setCmpTab('stability',this)">🛡️ استقرار</button>
+      <button class="ctab" onclick="setCmpTab('wealth',this)">💎 ثروة</button>
+    </div>
+    <div id="cmprows"></div>
+    <button class="cmp-ai-btn" onclick="aiCompare()">🤖 تحليل AI شامل للمقارنة</button>
+  </div>
+</div>
+</div>
+
+<!-- TIME TAB -->
+<div id="tab-time" class="tab">
+<div class="tsec">
+  <div class="sec-ttl">⏳ آلة الزمن التاريخية</div>
+  <div class="tctrl">
+    <input type="number" class="tinp" id="yinp" placeholder="1900 - 2025" min="1900" max="2025" value="2001">
+    <button class="btn-p" onclick="travelTime()">🚀 انتقل</button>
+    <button class="btn-p" style="background:linear-gradient(135deg,var(--c3),var(--c2))" onclick="aiYear()">🤖 تحليل AI</button>
+  </div>
+  <div class="tl" id="tlev"></div>
+</div>
+</div>
+
+<!-- BUTTERFLY TAB -->
+<div id="tab-butterfly" class="tab">
+<div class="bsec">
+  <div class="sec-ttl">🦋 محاكي تأثير الفراشة</div>
+  <p style="font-size:13px;color:var(--dim);margin-bottom:16px;line-height:1.7">اختر حدثاً تاريخياً واكتشف كيف غيّر مجرى التاريخ</p>
+  <div class="bgrid" id="bgrid"></div>
+  <div class="bres" id="bres"></div>
+  <div class="bai" id="bai"><div class="bai-t">🤖 تحليل AI</div><div id="baic"></div></div>
+</div>
+</div>
+
+<!-- TEACHER TAB -->
+<div id="tab-teacher" class="tab">
+<div class="tcsec">
+  <div class="sec-ttl">📚 وضع التعلم</div>
+  <div class="tcgrid" id="tcgrid"></div>
+</div>
+</div>
+
+</main>
+
+<footer>
+  <div class="flogo">🌍 WORLD PULSE</div>
+  <div>أخبار حية • من تصميم Abd Rahim</div>
+  <a href="https://www.facebook.com/profile.php?id=100088395420984" target="_blank" class="ffb">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    Abd Rahim Mess
+  </a>
+  <div style="margin-top:5px;font-size:10px">Powered by NewsData.io + Gemini AI + Open-Meteo • © 2026</div>
+</footer>
+
+<!-- AI MODAL -->
+<div class="modal-ov" id="aimod">
+  <div class="modal">
+    <div class="modal-h">
+      <div class="modal-ttl" id="aimodttl">🤖 تحليل AI</div>
+      <button class="modal-cl" onclick="closeAI()">✕</button>
+    </div>
+    <div class="modal-body" id="aimodbody"></div>
+  </div>
+</div>
+
+<!-- NOTIFICATION -->
+<div class="notif" id="notif">
+  <div class="notif-ic" id="notic">🔔</div>
+  <div><div class="notif-t" id="notit"></div><div class="notif-b" id="notib"></div></div>
+</div>
+
+<!-- TTS indicator -->
+<div class="tts-speaking" id="ttsspk">
+  <div class="tts-wave"><span></span><span></span><span></span><span></span><span></span></div>
+  <span>جاري القراءة... <button onclick="stopTTS()" style="background:none;border:none;color:var(--c4);cursor:pointer;font-size:13px;">■</button></span>
+</div>
+
+<!-- SCROLL TO TOP -->
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;left:20px;width:40px;height:40px;background:rgba(0,212,255,.15);border:1px solid var(--c1);border-radius:50%;color:var(--c1);font-size:18px;cursor:pointer;z-index:3000;display:none;align-items:center;justify-content:center;transition:all .3s;backdrop-filter:blur(10px);">↑</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+'use strict';
+
+// ═══════════════════════════════════════════════
+// CONFIG — المفاتيح
+// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════════
+// ⚙️ API KEYS
+// ═══════════════════════════════════════════════
+const NEWSDATA_KEY = 'pub_33ff0a220d984200bdbf20ffc7e22740';
+const GROQ_KEY     = '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';
+
+// ═══════════════════════════════════════════════
+// COUNTRIES DATA
+// ═══════════════════════════════════════════════
+const COUNTRIES = [
+  // ═══ القوى الكبرى ═══
+  {id:'US',name:'الولايات المتحدة',en:'United States',flag:'🇺🇸',cap:'واشنطن',capE:'Washington',pop:'334M',gdp:'$25.5T',gdpN:25500,area:'9.8M km²',mil:95,milN:95,stab:'tension',score:95,wealth:92,edu:88,nuclear:true,lat:38,lng:-97},
+  {id:'CN',name:'الصين',en:'China',flag:'🇨🇳',cap:'بكين',capE:'Beijing',pop:'1.4B',gdp:'$17.9T',gdpN:17900,area:'9.6M km²',mil:90,milN:90,stab:'tension',score:88,wealth:75,edu:82,nuclear:true,lat:35,lng:105},
+  {id:'RU',name:'روسيا',en:'Russia',flag:'🇷🇺',cap:'موسكو',capE:'Moscow',pop:'144M',gdp:'$2.2T',gdpN:2200,area:'17.1M km²',mil:88,milN:88,stab:'conflict',score:45,wealth:70,edu:78,nuclear:true,lat:60,lng:90},
+  {id:'DE',name:'ألمانيا',en:'Germany',flag:'🇩🇪',cap:'برلين',capE:'Berlin',pop:'84M',gdp:'$4.1T',gdpN:4100,area:'357K km²',mil:65,milN:65,stab:'stable',score:82,wealth:80,edu:90,nuclear:false,lat:51,lng:10},
+  {id:'FR',name:'فرنسا',en:'France',flag:'🇫🇷',cap:'باريس',capE:'Paris',pop:'68M',gdp:'$2.9T',gdpN:2900,area:'551K km²',mil:70,milN:70,stab:'stable',score:78,wealth:76,edu:87,nuclear:true,lat:46,lng:2},
+  {id:'GB',name:'المملكة المتحدة',en:'United Kingdom',flag:'🇬🇧',cap:'لندن',capE:'London',pop:'67M',gdp:'$3.1T',gdpN:3100,area:'243K km²',mil:72,milN:72,stab:'stable',score:80,wealth:78,edu:89,nuclear:true,lat:55,lng:-3},
+  {id:'JP',name:'اليابان',en:'Japan',flag:'🇯🇵',cap:'طوكيو',capE:'Tokyo',pop:'125M',gdp:'$4.2T',gdpN:4200,area:'377K km²',mil:60,milN:60,stab:'stable',score:85,wealth:82,edu:92,nuclear:false,lat:36,lng:138},
+  {id:'IN',name:'الهند',en:'India',flag:'🇮🇳',cap:'نيودلهي',capE:'New Delhi',pop:'1.43B',gdp:'$3.4T',gdpN:3400,area:'3.3M km²',mil:82,milN:82,stab:'tension',score:70,wealth:55,edu:72,nuclear:true,lat:20,lng:78},
+  // ═══ الشرق الأوسط ═══
+  {id:'SA',name:'السعودية',en:'Saudi Arabia',flag:'🇸🇦',cap:'الرياض',capE:'Riyadh',pop:'36M',gdp:'$1.1T',gdpN:1100,area:'2.1M km²',mil:68,milN:68,stab:'tension',score:62,wealth:88,edu:70,nuclear:false,lat:24,lng:45},
+  {id:'TR',name:'تركيا',en:'Turkey',flag:'🇹🇷',cap:'أنقرة',capE:'Ankara',pop:'85M',gdp:'$906B',gdpN:906,area:'785K km²',mil:72,milN:72,stab:'tension',score:58,wealth:52,edu:74,nuclear:false,lat:39,lng:35},
+  {id:'IR',name:'إيران',en:'Iran',flag:'🇮🇷',cap:'طهران',capE:'Tehran',pop:'88M',gdp:'$367B',gdpN:367,area:'1.6M km²',mil:75,milN:75,stab:'conflict',score:35,wealth:60,edu:70,nuclear:false,lat:32,lng:53},
+  {id:'IL',name:'إسرائيل',en:'Israel',flag:'🇮🇱',cap:'القدس',capE:'Jerusalem',pop:'9M',gdp:'$488B',gdpN:488,area:'22K km²',mil:80,milN:80,stab:'conflict',score:25,wealth:72,edu:88,nuclear:true,lat:31,lng:35},
+  {id:'PS',name:'فلسطين',en:'Palestine',flag:'🇵🇸',cap:'رام الله',capE:'Ramallah',pop:'5M',gdp:'$18B',gdpN:18,area:'6K km²',mil:20,milN:20,stab:'conflict',score:10,wealth:15,edu:72,nuclear:false,lat:32,lng:35.2},
+  {id:'AE',name:'الإمارات',en:'UAE',flag:'🇦🇪',cap:'أبوظبي',capE:'Abu Dhabi',pop:'10M',gdp:'$509B',gdpN:509,area:'84K km²',mil:55,milN:55,stab:'stable',score:82,wealth:90,edu:80,nuclear:false,lat:24,lng:54},
+  {id:'QA',name:'قطر',en:'Qatar',flag:'🇶🇦',cap:'الدوحة',capE:'Doha',pop:'3M',gdp:'$235B',gdpN:235,area:'12K km²',mil:35,milN:35,stab:'stable',score:78,wealth:95,edu:78,nuclear:false,lat:25,lng:51},
+  {id:'KW',name:'الكويت',en:'Kuwait',flag:'🇰🇼',cap:'الكويت',capE:'Kuwait City',pop:'4M',gdp:'$162B',gdpN:162,area:'18K km²',mil:30,milN:30,stab:'stable',score:70,wealth:85,edu:72,nuclear:false,lat:29,lng:48},
+  {id:'BH',name:'البحرين',en:'Bahrain',flag:'🇧🇭',cap:'المنامة',capE:'Manama',pop:'1.5M',gdp:'$44B',gdpN:44,area:'780 km²',mil:28,milN:28,stab:'stable',score:65,wealth:78,edu:74,nuclear:false,lat:26,lng:50},
+  {id:'OM',name:'عُمان',en:'Oman',flag:'🇴🇲',cap:'مسقط',capE:'Muscat',pop:'4.5M',gdp:'$104B',gdpN:104,area:'310K km²',mil:38,milN:38,stab:'stable',score:72,wealth:72,edu:70,nuclear:false,lat:22,lng:58},
+  {id:'JO',name:'الأردن',en:'Jordan',flag:'🇯🇴',cap:'عمّان',capE:'Amman',pop:'10M',gdp:'$50B',gdpN:50,area:'89K km²',mil:40,milN:40,stab:'tension',score:58,wealth:38,edu:72,nuclear:false,lat:30,lng:36},
+  {id:'IQ',name:'العراق',en:'Iraq',flag:'🇮🇶',cap:'بغداد',capE:'Baghdad',pop:'42M',gdp:'$264B',gdpN:264,area:'438K km²',mil:40,milN:40,stab:'conflict',score:30,wealth:55,edu:55,nuclear:false,lat:33,lng:44},
+  {id:'SY',name:'سوريا',en:'Syria',flag:'🇸🇾',cap:'دمشق',capE:'Damascus',pop:'22M',gdp:'$60B',gdpN:60,area:'185K km²',mil:35,milN:35,stab:'conflict',score:18,wealth:20,edu:60,nuclear:false,lat:35,lng:38},
+  {id:'LB',name:'لبنان',en:'Lebanon',flag:'🇱🇧',cap:'بيروت',capE:'Beirut',pop:'5M',gdp:'$23B',gdpN:23,area:'10K km²',mil:25,milN:25,stab:'conflict',score:20,wealth:22,edu:75,nuclear:false,lat:34,lng:36},
+  {id:'YE',name:'اليمن',en:'Yemen',flag:'🇾🇪',cap:'صنعاء',capE:'Sanaa',pop:'35M',gdp:'$22B',gdpN:22,area:'527K km²',mil:22,milN:22,stab:'conflict',score:8,wealth:18,edu:45,nuclear:false,lat:15,lng:47},
+  // ═══ أفريقيا ═══
+  {id:'EG',name:'مصر',en:'Egypt',flag:'🇪🇬',cap:'القاهرة',capE:'Cairo',pop:'105M',gdp:'$476B',gdpN:476,area:'1M km²',mil:55,milN:55,stab:'tension',score:55,wealth:40,edu:65,nuclear:false,lat:27,lng:30},
+  {id:'DZ',name:'الجزائر',en:'Algeria',flag:'🇩🇿',cap:'الجزائر',capE:'Algiers',pop:'46M',gdp:'$194B',gdpN:194,area:'2.4M km²',mil:50,milN:50,stab:'stable',score:60,wealth:55,edu:68,nuclear:false,lat:28,lng:3},
+  {id:'MA',name:'المغرب',en:'Morocco',flag:'🇲🇦',cap:'الرباط',capE:'Rabat',pop:'37M',gdp:'$143B',gdpN:143,area:'447K km²',mil:45,milN:45,stab:'stable',score:65,wealth:42,edu:65,nuclear:false,lat:32,lng:-5},
+  {id:'TN',name:'تونس',en:'Tunisia',flag:'🇹🇳',cap:'تونس',capE:'Tunis',pop:'12M',gdp:'$48B',gdpN:48,area:'164K km²',mil:32,milN:32,stab:'tension',score:52,wealth:38,edu:72,nuclear:false,lat:34,lng:9},
+  {id:'LY',name:'ليبيا',en:'Libya',flag:'🇱🇾',cap:'طرابلس',capE:'Tripoli',pop:'7M',gdp:'$72B',gdpN:72,area:'1.8M km²',mil:25,milN:25,stab:'conflict',score:22,wealth:55,edu:50,nuclear:false,lat:27,lng:17},
+  {id:'NG',name:'نيجيريا',en:'Nigeria',flag:'🇳🇬',cap:'أبوجا',capE:'Abuja',pop:'223M',gdp:'$477B',gdpN:477,area:'924K km²',mil:48,milN:48,stab:'conflict',score:38,wealth:35,edu:52,nuclear:false,lat:10,lng:8},
+  {id:'ZA',name:'جنوب أفريقيا',en:'South Africa',flag:'🇿🇦',cap:'بريتوريا',capE:'Pretoria',pop:'60M',gdp:'$405B',gdpN:405,area:'1.2M km²',mil:42,milN:42,stab:'tension',score:52,wealth:45,edu:68,nuclear:false,lat:-29,lng:25},
+  {id:'ET',name:'إثيوبيا',en:'Ethiopia',flag:'🇪🇹',cap:'أديس أبابا',capE:'Addis Ababa',pop:'125M',gdp:'$127B',gdpN:127,area:'1.1M km²',mil:35,milN:35,stab:'conflict',score:28,wealth:18,edu:48,nuclear:false,lat:9,lng:40},
+  {id:'KE',name:'كينيا',en:'Kenya',flag:'🇰🇪',cap:'نيروبي',capE:'Nairobi',pop:'55M',gdp:'$118B',gdpN:118,area:'582K km²',mil:30,milN:30,stab:'tension',score:48,wealth:28,edu:58,nuclear:false,lat:-1,lng:38},
+  {id:'GH',name:'غانا',en:'Ghana',flag:'🇬🇭',cap:'أكرا',capE:'Accra',pop:'33M',gdp:'$77B',gdpN:77,area:'239K km²',mil:25,milN:25,stab:'stable',score:60,wealth:32,edu:62,nuclear:false,lat:8,lng:-1},
+  {id:'TZ',name:'تنزانيا',en:'Tanzania',flag:'🇹🇿',cap:'دودوما',capE:'Dodoma',pop:'65M',gdp:'$75B',gdpN:75,area:'945K km²',mil:22,milN:22,stab:'stable',score:52,wealth:22,edu:50,nuclear:false,lat:-6,lng:35},
+  {id:'SD',name:'السودان',en:'Sudan',flag:'🇸🇩',cap:'الخرطوم',capE:'Khartoum',pop:'46M',gdp:'$35B',gdpN:35,area:'1.9M km²',mil:30,milN:30,stab:'conflict',score:12,wealth:20,edu:40,nuclear:false,lat:15,lng:30},
+  {id:'AO',name:'أنغولا',en:'Angola',flag:'🇦🇴',cap:'لواندا',capE:'Luanda',pop:'35M',gdp:'$124B',gdpN:124,area:'1.2M km²',mil:28,milN:28,stab:'tension',score:40,wealth:38,edu:42,nuclear:false,lat:-12,lng:18},
+  {id:'CM',name:'الكاميرون',en:'Cameroon',flag:'🇨🇲',cap:'ياوندي',capE:'Yaoundé',pop:'28M',gdp:'$47B',gdpN:47,area:'475K km²',mil:22,milN:22,stab:'tension',score:38,wealth:25,edu:48,nuclear:false,lat:4,lng:12},
+  {id:'CD',name:'الكونغو',en:'DR Congo',flag:'🇨🇩',cap:'كينشاسا',capE:'Kinshasa',pop:'100M',gdp:'$65B',gdpN:65,area:'2.3M km²',mil:25,milN:25,stab:'conflict',score:15,wealth:12,edu:38,nuclear:false,lat:-4,lng:25},
+  {id:'MZ',name:'موزمبيق',en:'Mozambique',flag:'🇲🇿',cap:'مابوتو',capE:'Maputo',pop:'33M',gdp:'$18B',gdpN:18,area:'799K km²',mil:15,milN:15,stab:'tension',score:32,wealth:12,edu:40,nuclear:false,lat:-18,lng:35},
+  {id:'MG',name:'مدغشقر',en:'Madagascar',flag:'🇲🇬',cap:'أنتاناناريفو',capE:'Antananarivo',pop:'28M',gdp:'$15B',gdpN:15,area:'587K km²',mil:12,milN:12,stab:'stable',score:38,wealth:10,edu:45,nuclear:false,lat:-20,lng:47},
+  {id:'UG',name:'أوغندا',en:'Uganda',flag:'🇺🇬',cap:'كمبالا',capE:'Kampala',pop:'48M',gdp:'$45B',gdpN:45,area:'241K km²',mil:20,milN:20,stab:'tension',score:35,wealth:18,edu:48,nuclear:false,lat:1,lng:32},
+  {id:'ZM',name:'زامبيا',en:'Zambia',flag:'🇿🇲',cap:'لوساكا',capE:'Lusaka',pop:'20M',gdp:'$29B',gdpN:29,area:'752K km²',mil:18,milN:18,stab:'stable',score:42,wealth:20,edu:52,nuclear:false,lat:-15,lng:28},
+  {id:'ZW',name:'زيمبابوي',en:'Zimbabwe',flag:'🇿🇼',cap:'هراري',capE:'Harare',pop:'16M',gdp:'$28B',gdpN:28,area:'391K km²',mil:15,milN:15,stab:'tension',score:28,wealth:18,edu:55,nuclear:false,lat:-20,lng:30},
+  {id:'SN',name:'السنغال',en:'Senegal',flag:'🇸🇳',cap:'داكار',capE:'Dakar',pop:'17M',gdp:'$28B',gdpN:28,area:'197K km²',mil:18,milN:18,stab:'stable',score:55,wealth:22,edu:52,nuclear:false,lat:14,lng:-14},
+  {id:'CI',name:'كوت ديفوار',en:'Ivory Coast',flag:'🇨🇮',cap:'أبيدجان',capE:'Abidjan',pop:'27M',gdp:'$70B',gdpN:70,area:'322K km²',mil:20,milN:20,stab:'tension',score:48,wealth:28,edu:50,nuclear:false,lat:7,lng:-6},
+  {id:'MW',name:'مالاوي',en:'Malawi',flag:'🇲🇼',cap:'ليلونغوي',capE:'Lilongwe',pop:'20M',gdp:'$13B',gdpN:13,area:'118K km²',mil:10,milN:10,stab:'stable',score:38,wealth:8,edu:45,nuclear:false,lat:-13,lng:34},
+  {id:'SO',name:'الصومال',en:'Somalia',flag:'🇸🇴',cap:'مقديشو',capE:'Mogadishu',pop:'17M',gdp:'$9B',gdpN:9,area:'637K km²',mil:8,milN:8,stab:'conflict',score:5,wealth:5,edu:20,nuclear:false,lat:6,lng:46},
+  {id:'ML',name:'مالي',en:'Mali',flag:'🇲🇱',cap:'باماكو',capE:'Bamako',pop:'23M',gdp:'$20B',gdpN:20,area:'1.2M km²',mil:12,milN:12,stab:'conflict',score:18,wealth:12,edu:32,nuclear:false,lat:17,lng:-4},
+  {id:'NE',name:'النيجر',en:'Niger',flag:'🇳🇪',cap:'نيامي',capE:'Niamey',pop:'25M',gdp:'$15B',gdpN:15,area:'1.3M km²',mil:10,milN:10,stab:'conflict',score:18,wealth:8,edu:28,nuclear:false,lat:17,lng:8},
+  {id:'BF',name:'بوركينا فاسو',en:'Burkina Faso',flag:'🇧🇫',cap:'واغادوغو',capE:'Ouagadougou',pop:'22M',gdp:'$18B',gdpN:18,area:'274K km²',mil:10,milN:10,stab:'conflict',score:20,wealth:10,edu:32,nuclear:false,lat:12,lng:-2},
+  {id:'RW',name:'رواندا',en:'Rwanda',flag:'🇷🇼',cap:'كيغالي',capE:'Kigali',pop:'14M',gdp:'$14B',gdpN:14,area:'26K km²',mil:15,milN:15,stab:'stable',score:52,wealth:18,edu:58,nuclear:false,lat:-2,lng:30},
+  {id:'BO',name:'بنين',en:'Benin',flag:'🇧🇯',cap:'بورتو نوفو',capE:'Porto-Novo',pop:'13M',gdp:'$17B',gdpN:17,area:'115K km²',mil:12,milN:12,stab:'tension',score:40,wealth:15,edu:42,nuclear:false,lat:9,lng:2},
+  // ═══ آسيا ═══
+  {id:'PK',name:'باكستان',en:'Pakistan',flag:'🇵🇰',cap:'إسلام آباد',capE:'Islamabad',pop:'231M',gdp:'$347B',gdpN:347,area:'881K km²',mil:65,milN:65,stab:'conflict',score:32,wealth:25,edu:52,nuclear:true,lat:30,lng:70},
+  {id:'BD',name:'بنغلاديش',en:'Bangladesh',flag:'🇧🇩',cap:'دكا',capE:'Dhaka',pop:'170M',gdp:'$460B',gdpN:460,area:'147K km²',mil:35,milN:35,stab:'tension',score:48,wealth:30,edu:60,nuclear:false,lat:24,lng:90},
+  {id:'ID',name:'إندونيسيا',en:'Indonesia',flag:'🇮🇩',cap:'جاكرتا',capE:'Jakarta',pop:'277M',gdp:'$1.3T',gdpN:1300,area:'1.9M km²',mil:60,milN:60,stab:'stable',score:68,wealth:52,edu:70,nuclear:false,lat:-5,lng:118},
+  {id:'PH',name:'الفلبين',en:'Philippines',flag:'🇵🇭',cap:'مانيلا',capE:'Manila',pop:'115M',gdp:'$440B',gdpN:440,area:'300K km²',mil:40,milN:40,stab:'tension',score:55,wealth:35,edu:68,nuclear:false,lat:13,lng:122},
+  {id:'VN',name:'فيتنام',en:'Vietnam',flag:'🇻🇳',cap:'هانوي',capE:'Hanoi',pop:'98M',gdp:'$449B',gdpN:449,area:'331K km²',mil:50,milN:50,stab:'stable',score:60,wealth:40,edu:72,nuclear:false,lat:16,lng:108},
+  {id:'TH',name:'تايلاند',en:'Thailand',flag:'🇹🇭',cap:'بانكوك',capE:'Bangkok',pop:'72M',gdp:'$580B',gdpN:580,area:'513K km²',mil:45,milN:45,stab:'tension',score:58,wealth:48,edu:70,nuclear:false,lat:15,lng:101},
+  {id:'MY',name:'ماليزيا',en:'Malaysia',flag:'🇲🇾',cap:'كوالالمبور',capE:'Kuala Lumpur',pop:'33M',gdp:'$430B',gdpN:430,area:'330K km²',mil:42,milN:42,stab:'stable',score:70,wealth:58,edu:74,nuclear:false,lat:4,lng:108},
+  {id:'MM',name:'ميانمار',en:'Myanmar',flag:'🇲🇲',cap:'نايبيداو',capE:'Naypyidaw',pop:'54M',gdp:'$65B',gdpN:65,area:'677K km²',mil:40,milN:40,stab:'conflict',score:18,wealth:22,edu:48,nuclear:false,lat:17,lng:96},
+  {id:'KH',name:'كمبوديا',en:'Cambodia',flag:'🇰🇭',cap:'بنوم بنه',capE:'Phnom Penh',pop:'17M',gdp:'$30B',gdpN:30,area:'181K km²',mil:20,milN:20,stab:'stable',score:42,wealth:22,edu:52,nuclear:false,lat:13,lng:105},
+  {id:'LK',name:'سريلانكا',en:'Sri Lanka',flag:'🇱🇰',cap:'كولومبو',capE:'Colombo',pop:'22M',gdp:'$75B',gdpN:75,area:'66K km²',mil:28,milN:28,stab:'tension',score:40,wealth:30,edu:68,nuclear:false,lat:8,lng:81},
+  {id:'NP',name:'نيبال',en:'Nepal',flag:'🇳🇵',cap:'كاتماندو',capE:'Kathmandu',pop:'30M',gdp:'$40B',gdpN:40,area:'147K km²',mil:20,milN:20,stab:'stable',score:45,wealth:18,edu:58,nuclear:false,lat:28,lng:84},
+  {id:'KZ',name:'كازاخستان',en:'Kazakhstan',flag:'🇰🇿',cap:'أستانا',capE:'Astana',pop:'19M',gdp:'$260B',gdpN:260,area:'2.7M km²',mil:45,milN:45,stab:'stable',score:58,wealth:60,edu:72,nuclear:false,lat:48,lng:68},
+  {id:'UZ',name:'أوزبكستان',en:'Uzbekistan',flag:'🇺🇿',cap:'طشقند',capE:'Tashkent',pop:'36M',gdp:'$90B',gdpN:90,area:'448K km²',mil:30,milN:30,stab:'stable',score:48,wealth:30,edu:68,nuclear:false,lat:41,lng:64},
+  {id:'AF',name:'أفغانستان',en:'Afghanistan',flag:'🇦🇫',cap:'كابول',capE:'Kabul',pop:'40M',gdp:'$14B',gdpN:14,area:'652K km²',mil:18,milN:18,stab:'conflict',score:5,wealth:10,edu:32,nuclear:false,lat:33,lng:65},
+  {id:'KP',name:'كوريا الشمالية',en:'North Korea',flag:'🇰🇵',cap:'بيونغ يانغ',capE:'Pyongyang',pop:'26M',gdp:'$25B',gdpN:25,area:'121K km²',mil:70,milN:70,stab:'tension',score:5,wealth:8,edu:65,nuclear:true,lat:40,lng:127},
+  {id:'KR',name:'كوريا الجنوبية',en:'South Korea',flag:'🇰🇷',cap:'سيول',capE:'Seoul',pop:'52M',gdp:'$1.7T',gdpN:1700,area:'100K km²',mil:68,milN:68,stab:'tension',score:78,wealth:75,edu:90,nuclear:false,lat:37,lng:128},
+  {id:'TW',name:'تايوان',en:'Taiwan',flag:'🇹🇼',cap:'تايبيه',capE:'Taipei',pop:'24M',gdp:'$790B',gdpN:790,area:'36K km²',mil:58,milN:58,stab:'tension',score:72,wealth:78,edu:88,nuclear:false,lat:23,lng:121},
+  {id:'MN',name:'منغوليا',en:'Mongolia',flag:'🇲🇳',cap:'أولان باتور',capE:'Ulaanbaatar',pop:'3M',gdp:'$17B',gdpN:17,area:'1.6M km²',mil:18,milN:18,stab:'stable',score:60,wealth:30,edu:68,nuclear:false,lat:47,lng:106},
+  {id:'GE',name:'جورجيا',en:'Georgia',flag:'🇬🇪',cap:'تبليسي',capE:'Tbilisi',pop:'4M',gdp:'$27B',gdpN:27,area:'70K km²',mil:22,milN:22,stab:'tension',score:48,wealth:30,edu:70,nuclear:false,lat:42,lng:44},
+  {id:'AM',name:'أرمينيا',en:'Armenia',flag:'🇦🇲',cap:'يريفان',capE:'Yerevan',pop:'3M',gdp:'$22B',gdpN:22,area:'30K km²',mil:20,milN:20,stab:'tension',score:45,wealth:28,edu:72,nuclear:false,lat:40,lng:45},
+  {id:'AZ',name:'أذربيجان',en:'Azerbaijan',flag:'🇦🇿',cap:'باكو',capE:'Baku',pop:'10M',gdp:'$78B',gdpN:78,area:'87K km²',mil:38,milN:38,stab:'tension',score:48,wealth:48,edu:70,nuclear:false,lat:40,lng:48},
+  {id:'SG',name:'سنغافورة',en:'Singapore',flag:'🇸🇬',cap:'سنغافورة',capE:'Singapore',pop:'6M',gdp:'$467B',gdpN:467,area:'730 km²',mil:50,milN:50,stab:'stable',score:96,wealth:95,edu:94,nuclear:false,lat:1,lng:104},
+  {id:'BN',name:'بروناي',en:'Brunei',flag:'🇧🇳',cap:'بندر سري بيغاوان',capE:'Bandar Seri Begawan',pop:'0.5M',gdp:'$15B',gdpN:15,area:'6K km²',mil:20,milN:20,stab:'stable',score:72,wealth:82,edu:72,nuclear:false,lat:4,lng:115},
+  // ═══ أوروبا ═══
+  {id:'UA',name:'أوكرانيا',en:'Ukraine',flag:'🇺🇦',cap:'كييف',capE:'Kyiv',pop:'44M',gdp:'$200B',gdpN:200,area:'603K km²',mil:60,milN:60,stab:'conflict',score:15,wealth:30,edu:80,nuclear:false,lat:49,lng:32},
+  {id:'IT',name:'إيطاليا',en:'Italy',flag:'🇮🇹',cap:'روما',capE:'Rome',pop:'59M',gdp:'$2.1T',gdpN:2100,area:'301K km²',mil:58,milN:58,stab:'stable',score:76,wealth:74,edu:85,nuclear:false,lat:42,lng:12},
+  {id:'ES',name:'إسبانيا',en:'Spain',flag:'🇪🇸',cap:'مدريد',capE:'Madrid',pop:'47M',gdp:'$1.5T',gdpN:1500,area:'506K km²',mil:52,milN:52,stab:'stable',score:77,wealth:72,edu:85,nuclear:false,lat:40,lng:-3},
+  {id:'NO',name:'النرويج',en:'Norway',flag:'🇳🇴',cap:'أوسلو',capE:'Oslo',pop:'5M',gdp:'$579B',gdpN:579,area:'385K km²',mil:45,milN:45,stab:'stable',score:96,wealth:94,edu:95,nuclear:false,lat:60,lng:10},
+  {id:'CH',name:'سويسرا',en:'Switzerland',flag:'🇨🇭',cap:'برن',capE:'Bern',pop:'8M',gdp:'$800B',gdpN:800,area:'41K km²',mil:40,milN:40,stab:'stable',score:97,wealth:96,edu:95,nuclear:false,lat:47,lng:8},
+  {id:'SE',name:'السويد',en:'Sweden',flag:'🇸🇪',cap:'ستوكهولم',capE:'Stockholm',pop:'10M',gdp:'$620B',gdpN:620,area:'450K km²',mil:48,milN:48,stab:'stable',score:95,wealth:90,edu:94,nuclear:false,lat:60,lng:18},
+  {id:'NL',name:'هولندا',en:'Netherlands',flag:'🇳🇱',cap:'أمستردام',capE:'Amsterdam',pop:'18M',gdp:'$1T',gdpN:1000,area:'42K km²',mil:48,milN:48,stab:'stable',score:92,wealth:88,edu:92,nuclear:false,lat:52,lng:5},
+  {id:'BE',name:'بلجيكا',en:'Belgium',flag:'🇧🇪',cap:'بروكسل',capE:'Brussels',pop:'11M',gdp:'$620B',gdpN:620,area:'31K km²',mil:45,milN:45,stab:'stable',score:88,wealth:82,edu:90,nuclear:false,lat:51,lng:4},
+  {id:'PL',name:'بولندا',en:'Poland',flag:'🇵🇱',cap:'وارسو',capE:'Warsaw',pop:'38M',gdp:'$748B',gdpN:748,area:'313K km²',mil:58,milN:58,stab:'stable',score:75,wealth:65,edu:85,nuclear:false,lat:52,lng:20},
+  {id:'AT',name:'النمسا',en:'Austria',flag:'🇦🇹',cap:'فيينا',capE:'Vienna',pop:'9M',gdp:'$527B',gdpN:527,area:'84K km²',mil:35,milN:35,stab:'stable',score:90,wealth:84,edu:90,nuclear:false,lat:47,lng:14},
+  {id:'PT',name:'البرتغال',en:'Portugal',flag:'🇵🇹',cap:'لشبونة',capE:'Lisbon',pop:'10M',gdp:'$280B',gdpN:280,area:'92K km²',mil:38,milN:38,stab:'stable',score:82,wealth:70,edu:82,nuclear:false,lat:39,lng:-8},
+  {id:'GR',name:'اليونان',en:'Greece',flag:'🇬🇷',cap:'أثينا',capE:'Athens',pop:'10M',gdp:'$240B',gdpN:240,area:'132K km²',mil:42,milN:42,stab:'stable',score:70,wealth:62,edu:80,nuclear:false,lat:39,lng:22},
+  {id:'CZ',name:'التشيك',en:'Czech Republic',flag:'🇨🇿',cap:'براغ',capE:'Prague',pop:'11M',gdp:'$330B',gdpN:330,area:'79K km²',mil:38,milN:38,stab:'stable',score:82,wealth:72,edu:88,nuclear:false,lat:50,lng:16},
+  {id:'RO',name:'رومانيا',en:'Romania',flag:'🇷🇴',cap:'بوخارست',capE:'Bucharest',pop:'19M',gdp:'$350B',gdpN:350,area:'238K km²',mil:40,milN:40,stab:'stable',score:68,wealth:55,edu:78,nuclear:false,lat:46,lng:25},
+  {id:'HU',name:'المجر',en:'Hungary',flag:'🇭🇺',cap:'بودابست',capE:'Budapest',pop:'10M',gdp:'$215B',gdpN:215,area:'93K km²',mil:35,milN:35,stab:'stable',score:68,wealth:60,edu:82,nuclear:false,lat:47,lng:19},
+  {id:'FI',name:'فنلندا',en:'Finland',flag:'🇫🇮',cap:'هلسنكي',capE:'Helsinki',pop:'5.5M',gdp:'$300B',gdpN:300,area:'338K km²',mil:45,milN:45,stab:'stable',score:95,wealth:85,edu:96,nuclear:false,lat:64,lng:26},
+  {id:'DK',name:'الدنمارك',en:'Denmark',flag:'🇩🇰',cap:'كوبنهاغن',capE:'Copenhagen',pop:'6M',gdp:'$395B',gdpN:395,area:'43K km²',mil:40,milN:40,stab:'stable',score:96,wealth:88,edu:94,nuclear:false,lat:56,lng:10},
+  {id:'SK',name:'سلوفاكيا',en:'Slovakia',flag:'🇸🇰',cap:'براتيسلافا',capE:'Bratislava',pop:'5.5M',gdp:'$130B',gdpN:130,area:'49K km²',mil:30,milN:30,stab:'stable',score:72,wealth:60,edu:82,nuclear:false,lat:48,lng:19},
+  {id:'HR',name:'كرواتيا',en:'Croatia',flag:'🇭🇷',cap:'زغرب',capE:'Zagreb',pop:'4M',gdp:'$75B',gdpN:75,area:'57K km²',mil:28,milN:28,stab:'stable',score:70,wealth:58,edu:80,nuclear:false,lat:45,lng:16},
+  {id:'RS',name:'صربيا',en:'Serbia',flag:'🇷🇸',cap:'بلغراد',capE:'Belgrade',pop:'7M',gdp:'$65B',gdpN:65,area:'77K km²',mil:32,milN:32,stab:'tension',score:55,wealth:40,edu:78,nuclear:false,lat:44,lng:21},
+  {id:'BG',name:'بلغاريا',en:'Bulgaria',flag:'🇧🇬',cap:'صوفيا',capE:'Sofia',pop:'6.5M',gdp:'$95B',gdpN:95,area:'111K km²',mil:30,milN:30,stab:'stable',score:62,wealth:48,edu:78,nuclear:false,lat:43,lng:25},
+  {id:'IE',name:'أيرلندا',en:'Ireland',flag:'🇮🇪',cap:'دبلن',capE:'Dublin',pop:'5M',gdp:'$500B',gdpN:500,area:'70K km²',mil:18,milN:18,stab:'stable',score:90,wealth:88,edu:90,nuclear:false,lat:53,lng:-8},
+  // ═══ أمريكا ═══
+  {id:'BR',name:'البرازيل',en:'Brazil',flag:'🇧🇷',cap:'برازيليا',capE:'Brasilia',pop:'215M',gdp:'$1.9T',gdpN:1900,area:'8.5M km²',mil:58,milN:58,stab:'tension',score:56,wealth:50,edu:68,nuclear:false,lat:-10,lng:-55},
+  {id:'MX',name:'المكسيك',en:'Mexico',flag:'🇲🇽',cap:'مكسيكو',capE:'Mexico City',pop:'128M',gdp:'$1.3T',gdpN:1300,area:'2M km²',mil:46,milN:46,stab:'tension',score:48,wealth:48,edu:70,nuclear:false,lat:23,lng:-102},
+  {id:'CA',name:'كندا',en:'Canada',flag:'🇨🇦',cap:'أوتاوا',capE:'Ottawa',pop:'38M',gdp:'$2.1T',gdpN:2100,area:'10M km²',mil:52,milN:52,stab:'stable',score:90,wealth:84,edu:91,nuclear:false,lat:56,lng:-96},
+  {id:'AR',name:'الأرجنتين',en:'Argentina',flag:'🇦🇷',cap:'بوينس آيرس',capE:'Buenos Aires',pop:'45M',gdp:'$640B',gdpN:640,area:'2.8M km²',mil:42,milN:42,stab:'tension',score:50,wealth:48,edu:75,nuclear:false,lat:-34,lng:-64},
+  {id:'CO',name:'كولومبيا',en:'Colombia',flag:'🇨🇴',cap:'بوغوتا',capE:'Bogota',pop:'52M',gdp:'$380B',gdpN:380,area:'1.1M km²',mil:40,milN:40,stab:'tension',score:48,wealth:38,edu:68,nuclear:false,lat:4,lng:-72},
+  {id:'CL',name:'تشيلي',en:'Chile',flag:'🇨🇱',cap:'سانتياغو',capE:'Santiago',pop:'19M',gdp:'$360B',gdpN:360,area:'757K km²',mil:38,milN:38,stab:'stable',score:72,wealth:60,edu:80,nuclear:false,lat:-30,lng:-71},
+  {id:'PE',name:'بيرو',en:'Peru',flag:'🇵🇪',cap:'ليما',capE:'Lima',pop:'33M',gdp:'$250B',gdpN:250,area:'1.3M km²',mil:35,milN:35,stab:'tension',score:50,wealth:38,edu:70,nuclear:false,lat:-9,lng:-75},
+  {id:'VE',name:'فنزويلا',en:'Venezuela',flag:'🇻🇪',cap:'كاراكاس',capE:'Caracas',pop:'28M',gdp:'$92B',gdpN:92,area:'916K km²',mil:35,milN:35,stab:'conflict',score:22,wealth:30,edu:62,nuclear:false,lat:8,lng:-66},
+  {id:'EC',name:'الإكوادور',en:'Ecuador',flag:'🇪🇨',cap:'كيتو',capE:'Quito',pop:'18M',gdp:'$115B',gdpN:115,area:'284K km²',mil:28,milN:28,stab:'tension',score:48,wealth:32,edu:68,nuclear:false,lat:-2,lng:-78},
+  {id:'BO',name:'بوليفيا',en:'Bolivia',flag:'🇧🇴',cap:'لاباز',capE:'La Paz',pop:'12M',gdp:'$45B',gdpN:45,area:'1.1M km²',mil:22,milN:22,stab:'tension',score:42,wealth:28,edu:62,nuclear:false,lat:-17,lng:-65},
+  {id:'PY',name:'باراغواي',en:'Paraguay',flag:'🇵🇾',cap:'أسونسيون',capE:'Asuncion',pop:'7M',gdp:'$40B',gdpN:40,area:'407K km²',mil:18,milN:18,stab:'stable',score:50,wealth:28,edu:62,nuclear:false,lat:-23,lng:-58},
+  {id:'UY',name:'أوروغواي',en:'Uruguay',flag:'🇺🇾',cap:'مونتيفيديو',capE:'Montevideo',pop:'3.5M',gdp:'$72B',gdpN:72,area:'176K km²',mil:18,milN:18,stab:'stable',score:82,wealth:58,edu:85,nuclear:false,lat:-33,lng:-56},
+  {id:'CU',name:'كوبا',en:'Cuba',flag:'🇨🇺',cap:'هافانا',capE:'Havana',pop:'11M',gdp:'$100B',gdpN:100,area:'110K km²',mil:28,milN:28,stab:'tension',score:38,wealth:30,edu:78,nuclear:false,lat:22,lng:-79},
+  // ═══ أوقيانوسيا ═══
+  {id:'AU',name:'أستراليا',en:'Australia',flag:'🇦🇺',cap:'كانبيرا',capE:'Canberra',pop:'26M',gdp:'$1.7T',gdpN:1700,area:'7.7M km²',mil:55,milN:55,stab:'stable',score:88,wealth:85,edu:90,nuclear:false,lat:-25,lng:133},
+  {id:'NZ',name:'نيوزيلندا',en:'New Zealand',flag:'🇳🇿',cap:'ويلينغتون',capE:'Wellington',pop:'5M',gdp:'$250B',gdpN:250,area:'268K km²',mil:30,milN:30,stab:'stable',score:92,wealth:82,edu:90,nuclear:false,lat:-41,lng:174},
+];
+
+const POWER_RANKING = [
+  {id:'US',name:'الولايات المتحدة',en:'USA',flag:'🇺🇸',score:95},
+  {id:'CN',name:'الصين',en:'China',flag:'🇨🇳',score:88},
+  {id:'RU',name:'روسيا',en:'Russia',flag:'🇷🇺',score:75},
+  {id:'IN',name:'الهند',en:'India',flag:'🇮🇳',score:70},
+  {id:'GB',name:'المملكة المتحدة',en:'UK',flag:'🇬🇧',score:70},
+  {id:'FR',name:'فرنسا',en:'France',flag:'🇫🇷',score:68},
+  {id:'JP',name:'اليابان',en:'Japan',flag:'🇯🇵',score:65},
+  {id:'DE',name:'ألمانيا',en:'Germany',flag:'🇩🇪',score:62},
+  {id:'TR',name:'تركيا',en:'Turkey',flag:'🇹🇷',score:58},
+  {id:'SA',name:'السعودية',en:'Saudi Arabia',flag:'🇸🇦',score:62},
+  {id:'IL',name:'إسرائيل',en:'Israel',flag:'🇮🇱',score:55},
+  {id:'IR',name:'إيران',en:'Iran',flag:'🇮🇷',score:52},
+  {id:'KR',name:'كوريا الجنوبية',en:'South Korea',flag:'🇰🇷',score:50},
+  {id:'PK',name:'باكستان',en:'Pakistan',flag:'🇵🇰',score:45},
+  {id:'BR',name:'البرازيل',en:'Brazil',flag:'🇧🇷',score:44},
+];
+
+const HIST = {
+  '1914':[{t:'اغتيال فرانز فرديناند',d:'شرارة الحرب العالمية الأولى في سراييفو — 17 مليون ضحية',c:'#ff3355'},
+          {t:'اندلاع الحرب العالمية الأولى',d:'أكبر نزاع عسكري في التاريخ حتى ذلك الحين',c:'#ff3355'}],
+  '1945':[{t:'نهاية الحرب العالمية الثانية',d:'استسلام ألمانيا واليابان',c:'#00ff88'},
+          {t:'تأسيس الأمم المتحدة',d:'إنشاء المنظمة الدولية لضمان السلام',c:'#00d4ff'},
+          {t:'القنبلة الذرية على هيروشيما',d:'أول استخدام للأسلحة النووية في التاريخ',c:'#ff3355'}],
+  '1969':[{t:'الهبوط على القمر',d:'نيل أرمسترونغ — أبولو 11 — أول إنسان على القمر',c:'#ffd700'}],
+  '1989':[{t:'سقوط جدار برلين',d:'نهاية الحرب الباردة وانهيار الاتحاد السوفيتي',c:'#00ff88'},
+          {t:'مجزرة تيانانمن',d:'قمع احتجاجات الطلاب في الصين',c:'#ff3355'}],
+  '2001':[{t:'أحداث 11 سبتمبر',d:'هجمات إرهابية على نيويورك وواشنطن — 3000 ضحية',c:'#ff3355'},
+          {t:'الحرب على أفغانستان',d:'التدخل العسكري الأمريكي ردًا على 11 سبتمبر',c:'#ff6633'}],
+  '2003':[{t:'غزو العراق',d:'التحالف بقيادة أمريكا يُطيح بصدام حسين',c:'#ff3355'}],
+  '2008':[{t:'الأزمة المالية العالمية',d:'انهيار ليمان براذرز وموجة ركود عالمي',c:'#ffaa00'},
+          {t:'انتخاب باراك أوباما',d:'أول رئيس أمريكي أفريقي الأصل',c:'#00d4ff'}],
+  '2011':[{t:'الربيع العربي',d:'موجة ثورات اجتاحت العالم العربي',c:'#ffaa00'},
+          {t:'مقتل أسامة بن لادن',d:'عملية أمريكية في باكستان تُنهي حياة زعيم القاعدة',c:'#00ff88'}],
+  '2020':[{t:'جائحة كوفيد-19',d:'وباء عالمي أوقف الحياة الطبيعية — 7 ملايين وفاة',c:'#ff3355'},
+          {t:'احتجاجات BLM',d:'موجة احتجاجات عالمية ضد العنصرية',c:'#7b2fff'}],
+  '2022':[{t:'الغزو الروسي لأوكرانيا',d:'أكبر نزاع عسكري في أوروبا منذ 1945',c:'#ff3355'},
+          {t:'وفاة الملكة إليزابيث الثانية',d:'70 عاماً في الحكم — أطول ملوك بريطانيا خدمةً',c:'#7b2fff'}],
+  '2023':[{t:'حرب غزة',d:'اندلاع نزاع مسلح عنيف في قطاع غزة بعد هجوم أكتوبر',c:'#ff3355'},
+          {t:'ثورة الذكاء الاصطناعي',d:'GPT-4 وGemini يغيران مستقبل البشرية',c:'#7b2fff'}],
+  '2024':[{t:'انتخاب ترامب للمرة الثانية',d:'دونالد ترامب يعود للبيت الأبيض',c:'#ff6633'},
+          {t:'التصعيد في الشرق الأوسط',d:'توترات حادة بين إيران وإسرائيل',c:'#ff3355'}],
+  '2025':[{t:'تطورات الذكاء الاصطناعي',d:'نماذج الجيل الخامس تُغير سوق العمل بشكل جذري',c:'#7b2fff'},
+          {t:'أزمات المناخ',d:'موجات حرارة قياسية وكوارث طبيعية متصاعدة',c:'#ff8c00'}],
+};
+
+const BUTTERFLIES = [
+  {icon:'💣',t:'لو لم تُلقَ القنبلة الذرية',d:'أغسطس 1945',desc:'ماذا لو استمرت الحرب مع اليابان بلا سلاح نووي؟',chain:['الحرب تستمر سنوات إضافية — ملايين الضحايا الإضافيين','لا سباق تسلح نووي بين القوتين العظميين','العالم اليوم بلا ترسانات نووية ومعاهدات الحد من التسلح','اليابان دولة مختلفة تماماً — ربما أقل ديمقراطية وأقل تطوراً']},
+  {icon:'🧱',t:'لو لم يسقط جدار برلين',d:'نوفمبر 1989',desc:'ماذا لو استمر الاتحاد السوفيتي حتى اليوم؟',chain:['ألمانيا منقسمة بين شرق وغرب حتى اليوم','الاتحاد الأوروبي لم يتوسع شرقاً','الحرب الباردة مستمرة والعالم في حالة توتر دائم','الإنترنت لم يتطور بنفس السرعة تحت ظل الرقابة السوفيتية']},
+  {icon:'🛩️',t:'لو لم تحدث أحداث 11 سبتمبر',d:'سبتمبر 2001',desc:'ماذا لو لم يُهاجَم مركز التجارة العالمي؟',chain:['لا غزو أفغانستان والعراق — ملايين الأرواح نجت','داعش لم تنشأ بهذا الشكل المتطرف','الهجرة الكبرى من الشرق الأوسط لم تحدث','السياسة الأمريكية والعالمية مختلفة جذرياً']},
+  {icon:'🦠',t:'لو لم تنتشر جائحة كوفيد-19',d:'ديسمبر 2019',desc:'ماذا لو لم يظهر فيروس كورونا؟',chain:['7 ملايين روح نجت حول العالم','الاقتصاد العالمي نما بشكل طبيعي','لقاحات mRNA لم تتطور بهذه السرعة','العمل عن بُعد لم يصبح الظاهرة العالمية التي نعرفها']},
+  {icon:'🔥',t:'لو لم تنشأ حرب غزة 2023',d:'أكتوبر 2023',desc:'ماذا لو لم يحدث هجوم حماس في أكتوبر 2023؟',chain:['مسار التطبيع السعودي الإسرائيلي استمر','الشرق الأوسط نحو استقرار نسبي','إيران بدون ورقة ضغط إقليمية قوية','ملايين الفلسطينيين بأوضاع إنسانية أفضل']},
+];
+
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
+let LANG='ar', THEME='night';
+let selC=null, cmpList=[], curFilter='all', allNews=[], newsTimer=null;
+let scene,cam,ren,gGrp,globe,zL=1,aR=true,isDrg=false,prevM={x:0,y:0};
+let curLayer='all';
+const R=1.5;
+let ttsUtt=null;
+
+// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════════
+// NEWS — مصادر متعددة موثوقة
+// ═══════════════════════════════════════════════
+async function loadNews(force=false) {
+  const feed = document.getElementById('nfeed');
+  if(!force && allNews.length>0) { renderNews(); return; }
+  feed.innerHTML = `<div class="nloading shimmer">📡 جاري جلب آخر الأخبار الحية...</div>`;
+  document.getElementById('nstatus').textContent = '';
+
+  let news = [];
+  let src = '';
+
+  // ═══ المصدر الأول: NewsData.io ═══
+  try {
+    const urlAr = `https://newsdata.io/api/1/latest?apikey=${NEWSDATA_KEY}&language=ar&size=20`;
+    const rAr = await fetch(urlAr, {signal: AbortSignal.timeout(10000)});
+    if(rAr.ok) {
+      const dAr = await rAr.json();
+      if(dAr.results && dAr.results.length > 0) {
+        news = [...news, ...dAr.results.map(a => ({
+          title: a.title||'', desc: a.description||'', link: a.link||'',
+          source: a.source_name||'NewsData', time: timeAgo(a.pubDate),
+          pub: a.pubDate||'', cat: categorize(a.title+' '+(a.description||''))
+        }))];
+        src = 'NewsData.io ✅';
+      }
+    }
+  } catch(e) {}
+
+  if(news.length < 8) {
+    try {
+      const urlEn = `https://newsdata.io/api/1/latest?apikey=${NEWSDATA_KEY}&language=en&category=world,politics&size=15`;
+      const rEn = await fetch(urlEn, {signal: AbortSignal.timeout(10000)});
+      if(rEn.ok) {
+        const dEn = await rEn.json();
+        if(dEn.results && dEn.results.length > 0) {
+          news = [...news, ...dEn.results.map(a => ({
+            title: a.title||'', desc: a.description||'', link: a.link||'',
+            source: a.source_name||'NewsData', time: timeAgo(a.pubDate),
+            pub: a.pubDate||'', cat: categorize(a.title+' '+(a.description||''))
+          }))];
+          src = (src?src+' + ':'')+'NewsData EN ✅';
+        }
+      }
+    } catch(e) {}
+  }
+
+  // ═══ المصدر الثاني: RSS عبر proxies ═══
+  if(news.length < 5) {
+    const rssFeeds = [
+      {url:'https://feeds.bbci.co.uk/arabic/rss.xml',         name:'BBC عربي'},
+      {url:'https://www.aljazeera.net/xml/rss/all.xml',        name:'الجزيرة'},
+      {url:'https://www.france24.com/ar/rss',                  name:'France 24'},
+      {url:'https://rss.nytimes.com/services/xml/rss/nyt/World.xml', name:'NYT'},
+      {url:'https://feeds.skynewsarabia.com/web/rss/11340.xml',name:'سكاي نيوز'},
+    ];
+    const proxies = [
+      u=>`https://api.allorigins.win/get?url=${encodeURIComponent(u)}`,
+      u=>`https://corsproxy.io/?${encodeURIComponent(u)}`,
+      u=>`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`,
+    ];
+    for(const feedSrc of rssFeeds) {
+      if(news.length >= 15) break;
+      for(const mkProxy of proxies) {
+        try {
+          const r = await fetch(mkProxy(feedSrc.url), {signal: AbortSignal.timeout(8000)});
+          if(!r.ok) continue;
+          let xml = '';
+          const proxyUrl = mkProxy(feedSrc.url);
+          if(proxyUrl.includes('allorigins')) { const d=await r.json(); xml=d.contents||''; }
+          else { xml = await r.text(); }
+          if(xml && xml.length > 200) {
+            const parsed = parseRSS(xml, feedSrc.name);
+            if(parsed.length > 0) { news=[...news,...parsed]; src=(src?src+' + ':'')+feedSrc.name+' ✅'; break; }
+          }
+        } catch(e) {}
+      }
+    }
+  }
+
+  // ═══ إذا فشل كل شيء — أخبار ثابتة كاحتياط ═══
+  if(news.length === 0) {
+    news = [
+      {title:'تطورات جديدة في المشهد الجيوسياسي العالمي لعام 2026',desc:'تشهد الساحة الدولية تحولات متسارعة على أصعدة عدة',source:'World Pulse',time:'الآن',pub:new Date().toISOString(),cat:'world',link:''},
+      {title:'اجتماعات دبلوماسية مكثفة بين القوى الكبرى',desc:'مباحثات رفيعة المستوى حول ملفات النزاعات الإقليمية',source:'World Pulse',time:'الآن',pub:new Date().toISOString(),cat:'politics',link:''},
+      {title:'تقرير: نمو اقتصادي متفاوت بين دول العالم في 2026',desc:'صندوق النقد الدولي يرصد مؤشرات مختلطة للاقتصاد العالمي',source:'World Pulse',time:'الآن',pub:new Date().toISOString(),cat:'economy',link:''},
+      {title:'تصاعد التوترات في عدة مناطق ساخنة حول العالم',desc:'مراقبون دوليون يتابعون تطور الأوضاع الميدانية',source:'World Pulse',time:'الآن',pub:new Date().toISOString(),cat:'war',link:''},
+      {title:'قمة مناخية جديدة تناقش أهداف خفض الانبعاثات',desc:'دول العالم تتفاوض على حزمة إجراءات مناخية طارئة',source:'World Pulse',time:'الآن',pub:new Date().toISOString(),cat:'nature',link:''},
+      {title:'اختراق علمي جديد في مجال الذكاء الاصطناعي',desc:'باحثون يكشفون عن نموذج قادر على محاكاة التفكير البشري',source:'World Pulse',time:'الآن',pub:new Date().toISOString(),cat:'science',link:''},
+    ];
+    src = 'World Pulse (وضع احتياطي)';
+    feed.innerHTML = `<div class="nloading shimmer">📡 جاري جلب الأخبار...</div>`;
+    // إعادة المحاولة بعد 30 ثانية
+    setTimeout(()=>loadNews(true), 30000);
+  }
+
+  const seen = new Set();
+  allNews = news.filter(n => { const k=(n.title||'').slice(0,35); if(seen.has(k)||!n.title) return false; seen.add(k); return true; });
+  allNews.sort((a,b)=>new Date(b.pub||0)-new Date(a.pub||0));
+  renderNews();
+  updateTicker();
+  document.getElementById('ntime').textContent=`آخر تحديث: ${new Date().toLocaleTimeString('ar-EG')}`;
+  document.getElementById('nstatus').textContent=`📡 ${allNews.length} خبر • ${src}`;
+  if(newsTimer) clearTimeout(newsTimer);
+  newsTimer=setTimeout(()=>loadNews(true), 10*60*1000);
+}
+
+function parseRSS(xmlStr, sourceName) {
+  const items = [];
+  try {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(xmlStr, 'text/xml');
+    doc.querySelectorAll('item').forEach(item => {
+      const title = item.querySelector('title')?.textContent?.replace(/<!\[CDATA\[|\]\]>/g,'').trim();
+      const desc = item.querySelector('description')?.textContent?.replace(/<[^>]+>|<!\[CDATA\[|\]\]>/g,'').trim().slice(0,200);
+      const pub = item.querySelector('pubDate')?.textContent?.trim();
+      const link = item.querySelector('link')?.textContent?.trim();
+      if(title && title.length > 4) {
+        items.push({title, desc:desc||'', link:link||'', source:sourceName, time:timeAgo(pub), pub:pub||'', cat:categorize(title)});
+      }
+    });
+  } catch(e){}
+  return items;
+}
+
+function categorize(t='') {
+  const s = t.toLowerCase();
+  if(/حرب|قصف|هجوم|معركة|قتلى|غارة|انفجار|war|attack|bomb|kill|strike|conflict|troops|missiles|blast|shoot/i.test(s)) return 'war';
+  if(/سياسة|رئيس|حكومة|انتخاب|وزير|برلمان|قمة|دبلوماسي|president|election|government|minister|parliament|summit|treaty|diplomat|senate|congress|biden|trump|putin/i.test(s)) return 'politics';
+  if(/اقتصاد|نفط|دولار|سوق|بورصة|بنك|تضخم|نمو|economy|oil|dollar|market|stock|bank|inflation|growth|gdp|trade|tariff|recession|fed|interest/i.test(s)) return 'economy';
+  if(/تقنية|ذكاء|فضاء|علم|تكنولوجيا|tech|ai|digital|space|science|robot|cyber|nasa|breakthrough|innovation/i.test(s)) return 'science';
+  if(/مناخ|بيئة|فيضان|زلزال|عاصفة|climate|flood|earthquake|storm|nature|disaster|fire|hurricane|wildfire|drought/i.test(s)) return 'nature';
+  return 'world';
+}
+
+function timeAgo(pub) {
+  if(!pub) return 'حديثاً';
+  try {
+    const diff = Math.floor((Date.now() - new Date(pub).getTime())/1000);
+    if(diff<60) return 'الآن';
+    if(diff<3600) return `منذ ${Math.floor(diff/60)} دقيقة`;
+    if(diff<86400) return `منذ ${Math.floor(diff/3600)} ساعة`;
+    return `منذ ${Math.floor(diff/86400)} يوم`;
+  } catch(e) { return 'حديثاً'; }
+}
+
+function renderNews() {
+  const feed = document.getElementById('nfeed');
+  let items = curFilter==='all' ? allNews : allNews.filter(n=>n.cat===curFilter);
+  if(!items.length) { feed.innerHTML=`<div class="nloading">لا توجد أخبار في هذا التصنيف</div>`; return; }
+  feed.innerHTML = items.slice(0,25).map((n,i)=>`
+    <div class="nitem" style="animation-delay:${i*0.04}s">
+      <span class="ncat cat-${n.cat}">${catLabel(n.cat)}</span>
+      <div class="nhl">${n.title}</div>
+      ${n.desc?`<div class="ndesc">${n.desc}</div>`:''}
+      <div class="nmeta">
+        <span class="nsrc">📡 ${n.source}</span>
+        <span>${n.time}</span>
+        <button class="ntts" onclick="speakText('${(n.title+(n.desc?' '+n.desc:'')).replace(/'/g,"\\'")}')" title="استمع للخبر">🔊</button>
+        ${n.link?`<a href="${n.link}" target="_blank" style="color:var(--c2);font-size:10px;text-decoration:none">🔗</a>`:''}
+      </div>
+    </div>`).join('');
+}
+
+function catLabel(c) {
+  const m={war:'⚔️ حرب',politics:'🏛️ سياسة',economy:'💰 اقتصاد',world:'🌍 عالم',science:'🔬 علوم',nature:'🌿 بيئة'};
+  return m[c]||'🌍 عالم';
+}
+
+function filterN(cat, btn) {
+  curFilter = cat;
+  document.querySelectorAll('.nfb').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderNews();
+}
+
+function updateTicker() {
+  if(!allNews.length) return;
+  const inner = document.getElementById('tkin');
+  const items = allNews.slice(0,14).map(n=>`<span class="tki" onclick="speakText('${n.title.replace(/'/g,"\\'")}')"><span class="tki-d"></span>${n.title}</span>`).join('');
+  inner.innerHTML = items + items;
+}
+
+// ═══════════════════════════════════════════════
+// TTS — قراءة صوتية فصيحة وذكية
+// ═══════════════════════════════════════════════
+
+function toArabicWords(n) {
+  n = Math.floor(Math.abs(parseFloat(n)));
+  if (isNaN(n) || n === 0) return 'صفر';
+  const ones = ['','واحد','اثنان','ثلاثة','أربعة','خمسة','ستة','سبعة','ثمانية','تسعة','عشرة','أحد عشر','اثنا عشر','ثلاثة عشر','أربعة عشر','خمسة عشر','ستة عشر','سبعة عشر','ثمانية عشر','تسعة عشر'];
+  const tens = ['','عشرة','عشرون','ثلاثون','أربعون','خمسون','ستون','سبعون','ثمانون','تسعون'];
+  const huns = ['','مئة','مئتان','ثلاثمئة','أربعمئة','خمسمئة','ستمئة','سبعمئة','ثمانمئة','تسعمئة'];
+  function u1000(x) {
+    if (x === 0) return '';
+    if (x < 20) return ones[x];
+    if (x < 100) { const t=Math.floor(x/10),o=x%10; return o ? ones[o]+' و'+tens[t] : tens[t]; }
+    const h=Math.floor(x/100), r=x%100;
+    return r ? huns[h]+' و'+u1000(r) : huns[h];
+  }
+  let res = '';
+  if (n >= 1e12) { res += u1000(Math.floor(n/1e12))+' تريليون '; n %= 1e12; }
+  if (n >= 1e9)  { res += u1000(Math.floor(n/1e9)) +' مليار ';   n %= 1e9;  }
+  if (n >= 1e6)  { res += u1000(Math.floor(n/1e6)) +' مليون ';   n %= 1e6;  }
+  if (n >= 1e3)  { res += u1000(Math.floor(n/1e3)) +' ألف ';     n %= 1e3;  }
+  if (n > 0)     { res += u1000(n); }
+  return res.trim();
+}
+
+function cleanForSpeech(txt) {
+  return txt
+    // $25.5T → خمسة وعشرون فاصل خمسة تريليون دولار
+    .replace(/\$\s*(\d+)\.(\d+)\s*T/gi, (_,a,b)=> toArabicWords(a)+' فاصل '+toArabicWords(b)+' تريليون دولار')
+    .replace(/\$\s*(\d+)\.(\d+)\s*B/gi, (_,a,b)=> toArabicWords(a)+' فاصل '+toArabicWords(b)+' مليار دولار')
+    .replace(/\$\s*(\d+)\.(\d+)\s*M/gi, (_,a,b)=> toArabicWords(a)+' فاصل '+toArabicWords(b)+' مليون دولار')
+    // $25T / $25B / $25M
+    .replace(/\$\s*(\d+)\s*T/gi, (_,n)=> toArabicWords(n)+' تريليون دولار')
+    .replace(/\$\s*(\d+)\s*B/gi, (_,n)=> toArabicWords(n)+' مليار دولار')
+    .replace(/\$\s*(\d+)\s*M/gi, (_,n)=> toArabicWords(n)+' مليون دولار')
+    .replace(/\$\s*(\d+)\s*K/gi, (_,n)=> toArabicWords(n)+' ألف دولار')
+    // $1900 → ألف وتسعمئة دولار
+    .replace(/\$\s*([\d,]+)/g, (_,n)=> toArabicWords(n.replace(/,/g,''))+' دولار')
+    // 25% → خمسة وعشرون بالمئة
+    .replace(/([\d.]+)\s*%/g, (_,n)=> toArabicWords(n)+' بالمئة')
+    // 334M / 1.4B (أشخاص أو وحدات)
+    .replace(/([\d.]+)\s*B\b/gi, (_,n)=> toArabicWords(n)+' مليار')
+    .replace(/([\d.]+)\s*M\b/gi, (_,n)=> toArabicWords(n)+' مليون')
+    .replace(/([\d.]+)\s*T\b/gi, (_,n)=> toArabicWords(n)+' تريليون')
+    .replace(/([\d.]+)\s*K\b/gi, (_,n)=> toArabicWords(n)+' ألف')
+    // km² و km
+    .replace(/([\d,]+)\s*km²/gi, (_,n)=> toArabicWords(n.replace(/,/g,''))+' كيلومتر مربع')
+    .replace(/([\d,]+)\s*km/gi,  (_,n)=> toArabicWords(n.replace(/,/g,''))+' كيلومتر')
+    // درجات الحرارة
+    .replace(/([\d.]+)\s*°C/g, (_,n)=> toArabicWords(n)+' درجة مئوية')
+    .replace(/([\d.]+)\s*°F/g, (_,n)=> toArabicWords(n)+' درجة فهرنهايت')
+    // أرقام عادية متبقية
+    .replace(/\b([\d,]+)\b/g, (_,n)=> toArabicWords(n.replace(/,/g,'')))
+    // تنظيف رموز
+    .replace(/[_|•·\-]/g,' ').replace(/\s+/g,' ').trim();
+}
+
+function getBestArabicVoice() {
+  const vs = window.speechSynthesis.getVoices();
+  const prefer = ['ar-SA','ar-EG','ar-AE','ar-MA','ar-DZ'];
+  for (const l of prefer) { const v=vs.find(x=>x.lang===l&&x.localService); if(v) return v; }
+  for (const l of prefer) { const v=vs.find(x=>x.lang===l); if(v) return v; }
+  return vs.find(x=>x.lang.startsWith('ar')) || null;
+}
+
+function speakText(text) {
+  if(!('speechSynthesis' in window)) { alert('متصفحك لا يدعم القراءة الصوتية'); return; }
+  stopTTS();
+  const clean = cleanForSpeech(text);
+  function doSpeak() {
+    ttsUtt = new SpeechSynthesisUtterance(clean);
+    ttsUtt.lang = 'ar-SA';
+    ttsUtt.rate = 0.85;
+    ttsUtt.pitch = 1.05;
+    ttsUtt.volume = 1;
+    const v = getBestArabicVoice();
+    if (v) ttsUtt.voice = v;
+    ttsUtt.onstart = ()=>document.getElementById('ttsspk').classList.add('show');
+    ttsUtt.onend   = ()=>document.getElementById('ttsspk').classList.remove('show');
+    ttsUtt.onerror = ()=>document.getElementById('ttsspk').classList.remove('show');
+    window.speechSynthesis.speak(ttsUtt);
+  }
+  const vs = window.speechSynthesis.getVoices();
+  if (vs.length > 0) { doSpeak(); }
+  else { window.speechSynthesis.onvoiceschanged = ()=>{ window.speechSynthesis.onvoiceschanged=null; doSpeak(); }; setTimeout(doSpeak, 400); }
+}
+
+function stopTTS() {
+  window.speechSynthesis.cancel();
+  document.getElementById('ttsspk').classList.remove('show');
+}
+
+function speakCountry() {
+  if(!selC) return;
+  const stab = selC.stab==='stable'?'مستقرة سياسياً':selC.stab==='tension'?'تشهد توترات سياسية':'تعاني من نزاع نشط';
+  speakText(`${selC.name}. العاصمة ${selC.cap}. عدد السكان ${selC.pop}. الناتج المحلي الإجمالي ${selC.gdp}. الوضع السياسي: ${stab}.`);
+}
+
+// ═══════════════════════════════════════════════
+// GEMINI AI — يعمل مباشرة من المتصفح بدون CORS
+// ═══════════════════════════════════════════════
+async function callGemini(prompt) {
+  try {
+    const r = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${GROQ_KEY}`
+      },
+      body: JSON.stringify({
+        model: 'llama-3.3-70b-versatile',
+        messages: [
+          { role: 'system', content: 'أنت مساعد ذكي متخصص في التحليل الجيوسياسي والأخبار العالمية. تجيب دائماً بالعربية الفصحى بشكل دقيق ومفصل.' },
+          { role: 'user', content: prompt }
+        ],
+        max_tokens: 1024,
+        temperature: 0.7
+      }),
+      signal: AbortSignal.timeout(30000)
+    });
+    if (!r.ok) {
+      const e = await r.json().catch(()=>({}));
+      throw new Error(e?.error?.message || `HTTP ${r.status}`);
+    }
+    const d = await r.json();
+    return d.choices?.[0]?.message?.content || '';
+  } catch(e) {
+    throw new Error('تعذّر الاتصال بـ AI. ' + e.message);
+  }
+}
+
+function openAI(title, content, loading=false) {
+  document.getElementById('aimodttl').textContent = title;
+  const body = document.getElementById('aimodbody');
+  body.textContent = content;
+  body.className = 'modal-body' + (loading?' loading':'');
+  document.getElementById('aimod').classList.add('show');
+}
+function closeAI() { document.getElementById('aimod').classList.remove('show'); }
+
+async function aiCountry() {
+  if(!selC) return;
+  openAI(`🤖 تحليل ${selC.name}`, 'جاري التحليل', true);
+  try {
+    const r = await callGemini(`أنت محلل جيوسياسي خبير. قدّم تحليلاً دقيقاً وشاملاً (8-10 جمل) لدولة ${selC.name} يشمل: الوضع السياسي الراهن في 2025-2026، الاقتصاد والثروات الطبيعية، القوة العسكرية، التحديات الأمنية، العلاقات الدولية، والمستقبل المتوقع. كن دقيقاً وموضوعياً بناءً على آخر المعطيات.`);
+    document.getElementById('aimodbody').textContent = r;
+    document.getElementById('aimodbody').className = 'modal-body';
+  } catch(e) {
+    document.getElementById('aimodbody').textContent = `⚠️ خطأ في الاتصال: ${e.message}`;
+    document.getElementById('aimodbody').className = 'modal-body';
+  }
+}
+
+async function aiYear() {
+  const y = document.getElementById('yinp').value;
+  openAI(`🤖 تحليل عام ${y}`, 'جاري التحليل', true);
+  try {
+    const r = await callGemini(`أنت مؤرخ وخبير سياسي. قدّم تحليلاً دقيقاً ومثيراً لأبرز أحداث عام ${y} وأثرها على العالم الحديث في 8-10 جمل. كن دقيقاً تاريخياً.`);
+    document.getElementById('aimodbody').textContent = r;
+    document.getElementById('aimodbody').className = 'modal-body';
+  } catch(e) {
+    document.getElementById('aimodbody').textContent = `⚠️ ${e.message}`;
+    document.getElementById('aimodbody').className = 'modal-body';
+  }
+}
+
+async function aiCompare() {
+  if(cmpList.length < 2) { notify('⚠️ اختر دولتين على الأقل للمقارنة','','⚠️'); return; }
+  const names = cmpList.map(c=>c.name).join(' و ');
+  openAI(`🤖 مقارنة: ${names}`, 'جاري التحليل الشامل', true);
+  try {
+    const r = await callGemini(`أنت محلل جيوسياسي واقتصادي خبير. قارن بشكل شامل ودقيق بين: ${names}. تشمل المقارنة: القوة الاقتصادية والناتج المحلي، القوة العسكرية والترسانة، الاستقرار السياسي، الثروات الطبيعية، مستوى التعليم والتنمية البشرية، النفوذ الجيوسياسي الدولي، والتوقعات المستقبلية. أجب في 10-12 جملة واضحة ودقيقة بناءً على آخر البيانات 2025-2026.`);
+    document.getElementById('aimodbody').textContent = r;
+    document.getElementById('aimodbody').className = 'modal-body';
+  } catch(e) {
+    document.getElementById('aimodbody').textContent = `⚠️ ${e.message}`;
+    document.getElementById('aimodbody').className = 'modal-body';
+  }
+}
+
+async function teachAI(c) {
+  openAI(`📚 تعلّم عن ${c.name}`, 'جاري إعداد المعلومات', true);
+  try {
+    const r = await callGemini(`قدّم معلومات تعليمية شاملة وممتعة عن دولة ${c.name} في 9-11 جملة تشمل: التاريخ والحضارة، الجغرافيا والمناخ، الثقافة والمجتمع، الاقتصاد والموارد، السياسة والحكم، المعالم السياحية البارزة، والأهمية الاستراتيجية في العالم. استخدم لغة سهلة وجذابة.`);
+    document.getElementById('aimodbody').textContent = r;
+    document.getElementById('aimodbody').className = 'modal-body';
+  } catch(e) {
+    document.getElementById('aimodbody').textContent = `⚠️ ${e.message}`;
+    document.getElementById('aimodbody').className = 'modal-body';
+  }
+}
+
+// ═══════════════════════════════════════════════
+// WEATHER
+// ═══════════════════════════════════════════════
+async function loadWeather(lat, lng) {
+  document.getElementById('wxr').innerHTML = `<span style="color:var(--dim);font-size:11px">جاري التحميل...</span>`;
+  try {
+    const r = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current=temperature_2m,wind_speed_10m,relative_humidity_2m,weather_code&wind_speed_unit=kmh`, {signal:AbortSignal.timeout(5000)});
+    const d = await r.json();
+    const c = d.current;
+    const icons = {0:'☀️',1:'🌤️',2:'⛅',3:'☁️',45:'🌫️',48:'🌫️',51:'🌦️',61:'🌧️',71:'❄️',80:'🌦️',95:'⛈️'};
+    const ic = icons[c.weather_code] || Object.entries(icons).find(([k])=>c.weather_code<=Number(k))?.[1] || '🌡️';
+    document.getElementById('wxr').innerHTML = `
+      <div class="wxi">${ic} <strong>${Math.round(c.temperature_2m)}°C</strong></div>
+      <div class="wxi">💨 ${Math.round(c.wind_speed_10m)} km/h</div>
+      <div class="wxi">💧 ${c.relative_humidity_2m}%</div>`;
+  } catch(e) {
+    document.getElementById('wxr').innerHTML = `<span style="color:var(--dim);font-size:11px">الطقس غير متاح</span>`;
+  }
+}
+
+// ═══════════════════════════════════════════════
+// GLOBE 3D
+// ═══════════════════════════════════════════════
+function initGlobe() {
+  const canvas = document.getElementById('gc');
+  const W=canvas.parentElement.clientWidth, H=Math.max(460,canvas.parentElement.clientHeight-55);
+  canvas.width=W; canvas.height=H;
+  scene=new THREE.Scene();
+  cam=new THREE.PerspectiveCamera(42,W/H,0.1,100);
+  cam.position.z=4.5;
+  ren=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
+  ren.setSize(W,H); ren.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  scene.add(new THREE.AmbientLight(0x1a2855,1.0));
+  const sun=new THREE.DirectionalLight(0xaaccff,1.6); sun.position.set(5,3,5); scene.add(sun);
+  const rim=new THREE.DirectionalLight(0x001888,0.5); rim.position.set(-5,-3,-5); scene.add(rim);
+  gGrp=new THREE.Group(); scene.add(gGrp);
+  const gGeo=new THREE.SphereGeometry(R,72,72);
+  const gMat=new THREE.MeshPhongMaterial({color:0x001233,emissive:0x000512,shininess:90,transparent:true,opacity:0.97});
+  globe=new THREE.Mesh(gGeo,gMat); gGrp.add(globe);
+  gGrp.add(new THREE.Mesh(new THREE.SphereGeometry(R*1.05,32,32),new THREE.MeshPhongMaterial({color:0x0044cc,transparent:true,opacity:0.09,side:THREE.FrontSide})));
+  gGrp.add(new THREE.Mesh(new THREE.SphereGeometry(R*1.09,32,32),new THREE.MeshPhongMaterial({color:0x002288,transparent:true,opacity:0.04,side:THREE.FrontSide})));
+  addGrid(); addDots();
+  const pts=[]; for(let i=0;i<3000;i++) pts.push((Math.random()-.5)*100,(Math.random()-.5)*100,(Math.random()-.5)*100);
+  const sg=new THREE.BufferGeometry(); sg.setAttribute('position',new THREE.Float32BufferAttribute(pts,3));
+  scene.add(new THREE.Points(sg,new THREE.PointsMaterial({color:0xaaddff,size:0.06,transparent:true,opacity:0.5})));
+  canvas.addEventListener('mousedown',e=>{isDrg=true;prevM={x:e.clientX,y:e.clientY};aR=false;});
+  window.addEventListener('mouseup',()=>isDrg=false);
+  window.addEventListener('mousemove',e=>{if(!isDrg)return;const dx=(e.clientX-prevM.x)*0.005,dy=(e.clientY-prevM.y)*0.005;gGrp.rotation.y+=dx;gGrp.rotation.x=Math.max(-1.2,Math.min(1.2,gGrp.rotation.x+dy));prevM={x:e.clientX,y:e.clientY};});
+  canvas.addEventListener('click',onGClick);
+  canvas.addEventListener('wheel',e=>{e.preventDefault();zG(e.deltaY>0?.92:1.08);},{passive:false});
+  let lt=null;
+  canvas.addEventListener('touchstart',e=>{lt=e.touches[0];aR=false;});
+  canvas.addEventListener('touchmove',e=>{e.preventDefault();const t=e.touches[0];if(lt){gGrp.rotation.y+=(t.clientX-lt.clientX)*0.005;gGrp.rotation.x=Math.max(-1.2,Math.min(1.2,gGrp.rotation.x+(t.clientY-lt.clientY)*0.005));}lt=t;},{passive:false});
+  animate();
+}
+
+function addGrid() {
+  const m=new THREE.LineBasicMaterial({color:0x002255,transparent:true,opacity:0.2});
+  for(let la=-80;la<=80;la+=20){const pts=[];for(let lo=0;lo<=360;lo+=4)pts.push(ll(la,lo,R+.001));gGrp.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),m));}
+  for(let lo=0;lo<360;lo+=20){const pts=[];for(let la=-90;la<=90;la+=4)pts.push(ll(la,lo,R+.001));gGrp.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),m));}
+}
+
+function addDots() {
+  COUNTRIES.forEach(c=>{
+    const pos=ll(c.lat,c.lng,R+0.02);
+    const col=getCC(c);
+    const dot=new THREE.Mesh(new THREE.SphereGeometry(0.038,10,10),new THREE.MeshBasicMaterial({color:col}));
+    dot.position.copy(pos); dot.userData=c; gGrp.add(dot);
+    const halo=new THREE.Mesh(new THREE.SphereGeometry(0.065,10,10),new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:0.28}));
+    halo.position.copy(pos); halo.userData={isHalo:true,phase:Math.random()*Math.PI*2}; gGrp.add(halo);
+    const ring=new THREE.Mesh(new THREE.RingGeometry(0.05,0.08,16),new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:0.4,side:THREE.DoubleSide}));
+    ring.position.copy(pos); ring.lookAt(new THREE.Vector3(0,0,0)); ring.userData={isRing:true,phase:Math.random()*Math.PI*2}; gGrp.add(ring);
+  });
+}
+
+function getCC(c) {
+  if(curLayer==='conflict'){if(c.stab==='conflict')return 0xff2244;if(c.stab==='tension')return 0xffaa00;return 0x00ff88;}
+  if(curLayer==='economy'){if(c.gdpN>4000)return 0x00ff88;if(c.gdpN>500)return 0xffaa00;return 0xff3355;}
+  if(curLayer==='stability'){if(c.stab==='stable')return 0x00ff88;if(c.stab==='tension')return 0xffaa00;return 0xff3355;}
+  if(curLayer==='military'){if(c.milN>80)return 0xff2244;if(c.milN>55)return 0xffaa00;return 0x00ccff;}
+  if(c.stab==='conflict')return 0xff2244;
+  if(c.stab==='tension')return 0xffaa00;
+  return 0x00ccff;
+}
+
+function ll(lat,lng,r) {
+  const phi=(90-lat)*Math.PI/180, theta=(lng+180)*Math.PI/180;
+  return new THREE.Vector3(-r*Math.sin(phi)*Math.cos(theta),r*Math.cos(phi),r*Math.sin(phi)*Math.sin(theta));
+}
+
+let animT=0;
+function animate() {
+  requestAnimationFrame(animate);
+  animT+=0.016;
+  if(aR) gGrp.rotation.y+=0.0018;
+  gGrp.children.forEach(o=>{
+    if(o.userData?.isRing){o.material.opacity=0.25+0.5*Math.abs(Math.sin(animT*2.5+o.userData.phase));const s=1+0.4*Math.abs(Math.sin(animT*1.8+o.userData.phase));o.scale.set(s,s,s);}
+    if(o.userData?.isHalo) o.material.opacity=0.12+0.22*Math.abs(Math.sin(animT*1.2+o.userData.phase));
+  });
+  ren.render(scene,cam);
+}
+
+function onGClick(e) {
+  if(isDrg) return;
+  const rect=document.getElementById('gc').getBoundingClientRect();
+  const mouse=new THREE.Vector2(((e.clientX-rect.left)/rect.width)*2-1,-((e.clientY-rect.top)/rect.height)*2+1);
+  const ray=new THREE.Raycaster(); ray.setFromCamera(mouse,cam);
+  const hits=ray.intersectObjects(gGrp.children);
+  for(const h of hits) {
+    if(h.object.userData?.id&&!h.object.userData?.isRing&&!h.object.userData?.isHalo) {
+      showPop(h.object.userData,e.clientX,e.clientY); return;
+    }
+  }
+}
+
+function showPop(c,x,y) {
+  selC=c;
+  const pop=document.getElementById('cpop');
+  const cont=pop.parentElement.getBoundingClientRect();
+  document.getElementById('pf').textContent=c.flag;
+  document.getElementById('pn').textContent=c.name;
+  document.getElementById('pc').textContent=`🏛️ ${c.cap}`;
+  document.getElementById('pp').textContent=c.pop;
+  document.getElementById('pg').textContent=c.gdp;
+  document.getElementById('pa').textContent=c.area;
+  document.getElementById('pm').textContent=c.milN+'/100';
+  const st=document.getElementById('pstat');
+  if(c.stab==='stable'){st.className='pstat ss';st.textContent='🟢 مستقرة سياسياً';}
+  else if(c.stab==='tension'){st.className='pstat st';st.textContent='🟡 توترات سياسية';}
+  else{st.className='pstat sc';st.textContent='🔴 نزاع نشط';}
+  loadWeather(c.lat,c.lng);
+  const rel=allNews.filter(n=>n.title.toLowerCase().includes(c.en.toLowerCase().split(' ')[0])||n.title.includes(c.name.split(' ')[0])).slice(0,3);
+  document.getElementById('pnews').innerHTML=rel.length?rel.map(n=>`<div class="pni" onclick="speakText('${n.title.replace(/'/g,"\\'")}')">🔵 ${n.title}</div>`).join(''):'<div style="font-size:11px;color:var(--dim)">لا توجد أخبار حالية</div>';
+  let lx=x-cont.left-150, ly=y-cont.top-20;
+  if(lx<10) lx=10;
+  if(ly+400>cont.height) ly=cont.height-410;
+  if(lx+320>cont.width) lx=cont.width-325;
+  pop.style.left=lx+'px'; pop.style.top=ly+'px';
+  pop.style.display='block';
+}
+
+function closePop(){document.getElementById('cpop').style.display='none';}
+function zG(f){zL=Math.max(.4,Math.min(3.5,zL*f));cam.position.z=4.5/zL;}
+function resetG(){gGrp.rotation.set(0,0,0);zL=1;cam.position.z=4.5;aR=true;document.getElementById('arbtn').textContent='⏸';}
+function togAR(){aR=!aR;document.getElementById('arbtn').textContent=aR?'⏸':'▶';}
+function setLayer(l,btn){curLayer=l;document.querySelectorAll('.lb').forEach(b=>b.classList.remove('active'));btn.classList.add('active');let ci=0;gGrp.children.forEach(o=>{if(o.userData?.id&&!o.userData?.isRing&&!o.userData?.isHalo){const c=COUNTRIES[ci++];if(c){o.material.color.setHex(getCC(c));}}});}
+
+// ═══════════════════════════════════════════════
+// COMPARE — مقارنة شاملة
+// ═══════════════════════════════════════════════
+const CMP_METRICS = {
+  all: [
+    {key:'gdpN',   label:'💰 الناتج المحلي الإجمالي', unit:'مليار دولار', max:25500, colors:['#00d4ff','#ffd700','#00ff88','#ff8c00']},
+    {key:'milN',   label:'🎖️ القوة العسكرية',          unit:'/100',       max:100,   colors:['#ff3355','#ff8c00','#7b2fff','#00d4ff']},
+    {key:'score',  label:'🛡️ مؤشر الاستقرار',          unit:'/100',       max:100,   colors:['#00ff88','#ffd700','#00d4ff','#ff8c00']},
+    {key:'wealth', label:'💎 الثروة الوطنية',           unit:'/100',       max:100,   colors:['#ffd700','#00d4ff','#00ff88','#ff3355']},
+    {key:'edu',    label:'📚 مؤشر التعليم',             unit:'/100',       max:100,   colors:['#7b2fff','#00d4ff','#ffd700','#00ff88']},
+  ],
+  economy: [
+    {key:'gdpN',   label:'💰 الناتج المحلي (مليار $)', unit:'مليار $', max:25500, colors:['#00d4ff','#ffd700','#00ff88','#ff8c00']},
+    {key:'wealth', label:'💎 الثروة الوطنية',           unit:'/100',    max:100,   colors:['#ffd700','#00d4ff','#00ff88','#ff3355']},
+  ],
+  military: [
+    {key:'milN',   label:'🎖️ القوة العسكرية الإجمالية', unit:'/100', max:100, colors:['#ff3355','#ff8c00','#7b2fff','#00d4ff']},
+    {key:'score',  label:'🏆 مؤشر القوة الكلية',        unit:'/100', max:100, colors:['#ffd700','#00ff88','#00d4ff','#ff8c00']},
+  ],
+  stability: [
+    {key:'score',  label:'🛡️ الاستقرار السياسي',  unit:'/100', max:100, colors:['#00ff88','#ffd700','#00d4ff','#ff8c00']},
+    {key:'edu',    label:'📚 التعليم والتنمية',    unit:'/100', max:100, colors:['#7b2fff','#00d4ff','#ffd700','#00ff88']},
+  ],
+  wealth: [
+    {key:'wealth', label:'💎 الثروة الطبيعية',   unit:'/100',    max:100,   colors:['#ffd700','#00d4ff','#00ff88','#ff3355']},
+    {key:'gdpN',   label:'💰 القوة الاقتصادية', unit:'مليار $', max:25500, colors:['#00d4ff','#ffd700','#00ff88','#ff8c00']},
+  ],
+};
+let curCmpTab='all';
+
+function populateCmpSel() {
+  const sel=document.getElementById('cmpsel');
+  sel.innerHTML='<option value="">اختر دولة للمقارنة...</option>'+COUNTRIES.map(c=>`<option value="${c.id}">${c.flag} ${c.name}</option>`).join('');
+}
+
+function addCmp() {
+  const id=document.getElementById('cmpsel').value;
+  if(!id) return;
+  const c=COUNTRIES.find(x=>x.id===id);
+  if(!c||cmpList.find(x=>x.id===id)) { notify('هذه الدولة مضافة مسبقاً','','⚠️'); return; }
+  if(cmpList.length>=4) { notify('الحد الأقصى 4 دول','','⚠️'); return; }
+  cmpList.push(c); renderCmpSlots(); renderCmpChart();
+}
+
+function addToCompare() {
+  if(!selC) return;
+  if(cmpList.find(x=>x.id===selC.id)) { notify(`${selC.name} مضافة مسبقاً`,'','⚠️'); return; }
+  if(cmpList.length>=4) { notify('الحد الأقصى 4 دول','','⚠️'); return; }
+  cmpList.push(selC); renderCmpSlots(); renderCmpChart();
+  switchTab('compare',document.querySelectorAll('.nb')[1]);
+  notify(`تمت إضافة ${selC.flag} ${selC.name} للمقارنة`,'','⚖️');
+}
+
+function clearCmp() { cmpList=[]; renderCmpSlots(); document.getElementById('cmpchart').classList.remove('show'); }
+
+function renderCmpSlots() {
+  const s=document.getElementById('slots');
+  s.innerHTML=cmpList.map((c,i)=>`
+    <div class="slot filled">
+      <div class="slot-f">${c.flag}</div>
+      <div class="slot-n">${c.name}</div>
+      <button class="slot-x" onclick="removeCmp(${i})">✕</button>
+    </div>`).join('');
+  for(let i=cmpList.length;i<4;i++) s.innerHTML+=`<div class="slot"><div class="slot-e">+</div><div style="font-size:10px;color:var(--dim)">أضف دولة</div></div>`;
+}
+
+function removeCmp(i) { cmpList.splice(i,1); renderCmpSlots(); renderCmpChart(); }
+
+function setCmpTab(t,btn) { curCmpTab=t; document.querySelectorAll('.ctab').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); renderCmpChart(); }
+
+function renderCmpChart() {
+  const ch=document.getElementById('cmpchart');
+  if(cmpList.length<2){ch.classList.remove('show');return;}
+  ch.classList.add('show');
+  const metrics=CMP_METRICS[curCmpTab]||CMP_METRICS.all;
+  const nuclearRow = curCmpTab==='all'||curCmpTab==='military' ? `
+    <div class="cmp-row">
+      <div class="cmp-rl"><span class="cmp-rl-ic">☢️</span> امتلاك أسلحة نووية</div>
+      <div class="cbars">${cmpList.map((c,i)=>`
+        <div class="cbi">
+          <span class="cbif">${c.flag}</span>
+          <div class="cbit"><div class="cbif2" style="width:${c.nuclear?100:15}%;background:${c.nuclear?'#ff3355':'rgba(255,255,255,.2)'}"></div></div>
+          <span class="cbiv" style="color:${c.nuclear?'#ff3355':'var(--dim)'}">${c.nuclear?'☢️ نعم':'—'}</span>
+        </div>`).join('')}
+      </div>
+    </div>` : '';
+  document.getElementById('cmprows').innerHTML = metrics.map(m=>`
+    <div class="cmp-row">
+      <div class="cmp-rl"><span class="cmp-rl-ic"></span>${m.label}</div>
+      <div class="cbars">${cmpList.map((c,i)=>{
+        const val=c[m.key]||0;
+        const pct=Math.min(100,(val/m.max)*100);
+        const disp=m.key==='gdpN'?(val>=1000?`$${(val/1000).toFixed(1)}T`:`$${val}B`):val+' '+m.unit;
+        return `<div class="cbi"><span class="cbif">${c.flag}</span><div class="cbit"><div class="cbif2" style="width:${pct}%;background:${m.colors[i%m.colors.length]}"></div></div><span class="cbiv">${disp}</span></div>`;
+      }).join('')}</div>
+    </div>`).join('') + nuclearRow;
+}
+
+// ═══════════════════════════════════════════════
+// SEARCH
+// ═══════════════════════════════════════════════
+function onSearch(v) {
+  const sr=document.getElementById('sr');
+  if(!v.trim()){sr.classList.remove('show');return;}
+  const res=COUNTRIES.filter(c=>c.name.includes(v)||c.en.toLowerCase().includes(v.toLowerCase())||c.cap.includes(v)).slice(0,7);
+  sr.innerHTML=res.map(c=>`<div class="sri" onclick="selectC('${c.id}')"><span class="sri-f">${c.flag}</span><div><div class="sri-n">${c.name}</div><div class="sri-c">🏛️ ${c.cap}</div></div></div>`).join('');
+  sr.classList.toggle('show',res.length>0);
+}
+
+function selectC(id) {
+  const c=COUNTRIES.find(x=>x.id===id);
+  if(!c) return;
+  document.getElementById('si').value='';
+  document.getElementById('sr').classList.remove('show');
+  showPop(c,window.innerWidth/2,window.innerHeight/2);
+  switchTab('globe',document.querySelectorAll('.nb')[0]);
+}
+
+document.addEventListener('click',e=>{if(!e.target.closest('.sw'))document.getElementById('sr').classList.remove('show');});
+
+// ═══════════════════════════════════════════════
+// TIME MACHINE
+// ═══════════════════════════════════════════════
+function travelTime() {
+  const y=document.getElementById('yinp').value;
+  const events=HIST[y]||[];
+  const el=document.getElementById('tlev');
+  if(!events.length){
+    el.innerHTML=`<div style="text-align:center;padding:30px;color:var(--dim)">لا توجد أحداث مسجلة لعام ${y}<br><small>جرب: 1914, 1945, 1969, 1989, 2001, 2008, 2011, 2020, 2022, 2023, 2024, 2025</small></div>`;
+    return;
+  }
+  el.innerHTML=events.map(e=>`
+    <div class="tle">
+      <div class="tly">${y}</div>
+      <div class="tldot" style="background:${e.c}"></div>
+      <div class="tlc">
+        <div class="tlt">${e.t}</div>
+        <div class="tld">${e.d}</div>
+        <button class="tlai" onclick="aiYear()">🤖 تحليل AI</button>
+      </div>
+    </div>`).join('');
+}
+
+// ═══════════════════════════════════════════════
+// BUTTERFLY
+// ═══════════════════════════════════════════════
+function renderButterfly() {
+  document.getElementById('bgrid').innerHTML=BUTTERFLIES.map((b,i)=>`
+    <div class="bcard" onclick="showButterfly(${i},this)">
+      <div class="bic">${b.icon}</div>
+      <div class="bttl">${b.t}</div>
+      <div class="bdt">${b.d}</div>
+      <div class="bdsc">${b.desc}</div>
+    </div>`).join('');
+}
+
+async function showButterfly(i,el) {
+  document.querySelectorAll('.bcard').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  const b=BUTTERFLIES[i];
+  const res=document.getElementById('bres');
+  res.innerHTML=`<div class="bres-t">🦋 ${b.t}</div><div class="bchain">${b.chain.map((c,j)=>`<div class="bci"><div class="bcn">${j+1}</div><div class="bct">${c}</div></div>`).join('')}</div>`;
+  res.classList.add('show');
+  const bai=document.getElementById('bai');
+  bai.classList.remove('show');
+  document.getElementById('baic').textContent='جاري التحليل بـ Claude AI...';
+  bai.classList.add('show');
+  try {
+    const r=await callGemini(`تخيّل وحلل بعمق: "${b.t}" — ${b.desc}. كيف كان العالم سيختلف اليوم؟ قدّم تحليلاً جيوسياسياً واجتماعياً واقتصادياً في 8-10 جمل دقيقة ومثيرة للتفكير.`);
+    document.getElementById('baic').textContent=r;
+  } catch(e) {
+    document.getElementById('baic').textContent=`⚠️ ${e.message}`;
+  }
+}
+
+// ═══════════════════════════════════════════════
+// TEACHER
+// ═══════════════════════════════════════════════
+function renderTeacher() {
+  const featured=COUNTRIES.filter(c=>['US','CN','RU','DE','FR','GB','JP','SA','IN','EG','TR','AE','BR','AU','CA','QA','DZ','MA','IL','KR'].includes(c.id));
+  document.getElementById('tcgrid').innerHTML=featured.map(c=>`
+    <div class="tccard">
+      <div class="tcflag">${c.flag}</div>
+      <div class="tcname">${c.name}</div>
+      <div class="tccap">🏛️ ${c.cap}</div>
+      <div class="tcstats">
+        <div class="tcs"><div class="tcsl">السكان</div><div class="tcsv">${c.pop}</div></div>
+        <div class="tcs"><div class="tcsl">الناتج المحلي</div><div class="tcsv">${c.gdp}</div></div>
+        <div class="tcs"><div class="tcsl">القوة</div><div class="tcsv">${c.score}/100</div></div>
+        <div class="tcs"><div class="tcsl">العسكر</div><div class="tcsv">${c.milN}/100</div></div>
+      </div>
+      <button class="tcaib" onclick="teachAI(${JSON.stringify({name:c.name,en:c.en}).replace(/"/g,'&quot;')})">🤖 تعلّم بـ AI</button>
+    </div>`).join('');
+}
+
+// ═══════════════════════════════════════════════
+// POWER RANKING
+// ═══════════════════════════════════════════════
+function renderPower() {
+  document.getElementById('plist').innerHTML=POWER_RANKING.map((c,i)=>`
+    <div class="pitem" onclick="selectC('${c.id}')">
+      <span class="prk">${i+1}</span>
+      <span class="pfl">${c.flag}</span>
+      <div class="pin"><div class="pnm">${c.name}</div><div class="pbw"><div class="pbf" style="width:${c.score}%"></div></div></div>
+      <span class="psc">${c.score}</span>
+    </div>`).join('');
+}
+
+// ═══════════════════════════════════════════════
+// STARS CANVAS
+// ═══════════════════════════════════════════════
+function initStars() {
+  const cv=document.getElementById('stars');
+  const ctx=cv.getContext('2d');
+  cv.width=window.innerWidth; cv.height=window.innerHeight;
+  const stars=Array.from({length:220},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*1.3,op:Math.random()}));
+  const draw=()=>{ctx.clearRect(0,0,cv.width,cv.height);stars.forEach(s=>{s.op+=((Math.random()-.5)*0.035);s.op=Math.max(.04,Math.min(.85,s.op));ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(180,220,255,${s.op})`;ctx.fill();});requestAnimationFrame(draw);};
+  draw();
+  window.addEventListener('resize',()=>{cv.width=window.innerWidth;cv.height=window.innerHeight;});
+}
+
+// ═══════════════════════════════════════════════
+// NOTIFICATION
+// ═══════════════════════════════════════════════
+let nTimer=null;
+function notify(title,body='',icon='🔔') {
+  clearTimeout(nTimer);
+  document.getElementById('notic').textContent=icon;
+  document.getElementById('notit').textContent=title;
+  document.getElementById('notib').textContent=body;
+  document.getElementById('notif').classList.add('show');
+  nTimer=setTimeout(()=>document.getElementById('notif').classList.remove('show'),4500);
+}
+
+// ═══════════════════════════════════════════════
+// TABS / THEME / LANG
+// ═══════════════════════════════════════════════
+function switchTab(t,btn) {
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+t).classList.add('active');
+  if(btn) btn.classList.add('active');
+  // ✅ Scroll to top — يعمل على جميع المتصفحات
+  try { window.scroll({top:0,left:0,behavior:'smooth'}); } catch(e) {}
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  document.querySelector('main').scrollTop = 0;
+  if(t==='globe') setTimeout(()=>{if(ren){const cv=document.getElementById('gc');const W=cv.parentElement.clientWidth,H=Math.max(400,cv.parentElement.clientHeight-55);ren.setSize(W,H);cam.aspect=W/H;cam.updateProjectionMatrix();}},150);
+}
+
+function toggleTheme() {
+  THEME=THEME==='night'?'day':'night';
+  document.body.style.background=THEME==='night'?'#020912':'#0a1628';
+  document.getElementById('thbtn').textContent=THEME==='night'?'🌙':'☀️';
+}
+
+// ═══════════════════════════════════════════════
+// نظام الترجمة الكامل
+// ═══════════════════════════════════════════════
+const TRANS = {
+  ar: {
+    dir:'rtl', lang:'ar',
+    search:'ابحث عن دولة...',
+    nav_globe:'🌍 الكرة', nav_compare:'⚖️ مقارنة', nav_time:'⏳ التاريخ', nav_butterfly:'🦋 تأثير', nav_teacher:'📚 تعلم',
+    globe_title:'🌍 الكرة الأرضية التفاعلية',
+    layer_all:'🌐 الكل', layer_conflict:'⚔️ نزاعات', layer_economy:'💰 اقتصاد', layer_stability:'🛡️ استقرار', layer_military:'🎖️ عسكري',
+    news_title:'📡 أخبار العالم الحية', news_all:'الكل', news_war:'⚔️ حروب', news_politics:'🏛️ سياسة', news_economy:'💰 اقتصاد', news_world:'🌍 عالم', news_science:'🔬 علوم',
+    news_refresh:'🔄 تحديث الأخبار الآن', news_loading:'📡 جاري جلب الأخبار الحية...',
+    power_title:'🏆 ترتيب القوى العالمية',
+    compare_title:'⚖️ مقارنة الدول الشاملة', compare_add:'+ إضافة', compare_clear:'🗑️ مسح', compare_ai:'🤖 تحليل AI',
+    compare_sel:'اختر دولة للمقارنة...',
+    cmp_all:'🌐 الكل', cmp_econ:'💰 اقتصاد', cmp_mil:'🎖️ عسكري', cmp_stab:'🛡️ استقرار', cmp_wealth:'💎 ثروة',
+    cmp_ai_btn:'🤖 تحليل AI شامل للمقارنة',
+    time_title:'⏳ آلة الزمن التاريخية', time_go:'🚀 انتقل', time_ai:'🤖 تحليل AI',
+    butterfly_title:'🦋 محاكي تأثير الفراشة', butterfly_desc:'اختر حدثاً تاريخياً واكتشف كيف غيّر مجرى التاريخ',
+    teacher_title:'📚 وضع التعلم',
+    pop_compare:'⚖️ قارن', pop_ai:'🤖 تحليل AI', pop_speak:'🔊 اسمع',
+    pop_weather:'🌤️ الطقس الآن', pop_news:'📰 آخر الأخبار',
+    stable:'🟢 مستقرة سياسياً', tension:'🟡 توترات سياسية', conflict:'🔴 نزاع نشط',
+    stat_pop:'السكان', stat_gdp:'الناتج المحلي', stat_area:'المساحة', stat_mil:'القوة العسكرية',
+    tc_pop:'السكان', tc_gdp:'الناتج المحلي', tc_power:'القوة', tc_mil:'العسكر', tc_learn:'🤖 تعلّم بـ AI',
+    footer_powered:'أخبار حية • Groq AI • مقارنة شاملة • كرة أرضية 3D',
+  },
+  en: {
+    dir:'ltr', lang:'en',
+    search:'Search for a country...',
+    nav_globe:'🌍 Globe', nav_compare:'⚖️ Compare', nav_time:'⏳ History', nav_butterfly:'🦋 Effect', nav_teacher:'📚 Learn',
+    globe_title:'🌍 Interactive 3D Globe',
+    layer_all:'🌐 All', layer_conflict:'⚔️ Conflicts', layer_economy:'💰 Economy', layer_stability:'🛡️ Stability', layer_military:'🎖️ Military',
+    news_title:'📡 World Live News', news_all:'All', news_war:'⚔️ War', news_politics:'🏛️ Politics', news_economy:'💰 Economy', news_world:'🌍 World', news_science:'🔬 Science',
+    news_refresh:'🔄 Refresh News', news_loading:'📡 Fetching live news...',
+    power_title:'🏆 World Power Ranking',
+    compare_title:'⚖️ Country Comparison', compare_add:'+ Add', compare_clear:'🗑️ Clear', compare_ai:'🤖 AI Analysis',
+    compare_sel:'Select a country...',
+    cmp_all:'🌐 All', cmp_econ:'💰 Economy', cmp_mil:'🎖️ Military', cmp_stab:'🛡️ Stability', cmp_wealth:'💎 Wealth',
+    cmp_ai_btn:'🤖 Full AI Comparison Analysis',
+    time_title:'⏳ Historical Time Machine', time_go:'🚀 Travel', time_ai:'🤖 AI Analysis',
+    butterfly_title:'🦋 Butterfly Effect Simulator', butterfly_desc:'Choose a historical event and discover how it changed the course of history',
+    teacher_title:'📚 Learning Mode',
+    pop_compare:'⚖️ Compare', pop_ai:'🤖 AI Analysis', pop_speak:'🔊 Listen',
+    pop_weather:'🌤️ Current Weather', pop_news:'📰 Latest News',
+    stable:'🟢 Politically Stable', tension:'🟡 Political Tension', conflict:'🔴 Active Conflict',
+    stat_pop:'Population', stat_gdp:'GDP', stat_area:'Area', stat_mil:'Military Power',
+    tc_pop:'Population', tc_gdp:'GDP', tc_power:'Power', tc_mil:'Military', tc_learn:'🤖 Learn with AI',
+    footer_powered:'Live News • Groq AI • Full Comparison • 3D Globe',
+  }
+};
+
+function applyLang() {
+  const t = TRANS[LANG];
+  document.documentElement.lang = t.lang;
+  document.documentElement.dir  = t.dir;
+  // بحث
+  const si = document.getElementById('si'); if(si) si.placeholder = t.search;
+  // أزرار التنقل
+  const nbs = document.querySelectorAll('nav .nb:not(.nb-i)');
+  const navKeys = ['nav_globe','nav_compare','nav_time','nav_butterfly','nav_teacher'];
+  nbs.forEach((b,i)=>{ if(navKeys[i]) b.childNodes[0] ? b.textContent = t[navKeys[i]] : null; b.textContent = t[navKeys[i]]; });
+  // عنوان الكرة
+  const gttl = document.querySelector('.gttl'); if(gttl) gttl.textContent = t.globe_title;
+  // طبقات الكرة
+  const lbs = document.querySelectorAll('.lb');
+  const layerKeys = ['layer_all','layer_conflict','layer_economy','layer_stability','layer_military'];
+  lbs.forEach((b,i)=>{ if(layerKeys[i]) b.textContent = t[layerKeys[i]]; });
+  // عنوان الأخبار
+  const nh = document.querySelector('.scardh'); if(nh) nh.childNodes[0].textContent = t.news_title+' ';
+  // فلاتر الأخبار
+  const nfbs = document.querySelectorAll('.nfb');
+  const nfKeys=['news_all','news_war','news_politics','news_economy','news_world','news_science'];
+  nfbs.forEach((b,i)=>{ if(nfKeys[i]) b.textContent=t[nfKeys[i]]; });
+  // زر تحديث الأخبار
+  const nr=document.querySelector('.nrefresh'); if(nr) nr.textContent=t.news_refresh;
+  // ترتيب القوى
+  const ph=document.querySelectorAll('.scardh')[1]; if(ph) ph.textContent=t.power_title;
+  // مقارنة
+  const cttl=document.querySelector('.cmpsec .sec-ttl'); if(cttl) cttl.textContent=t.compare_title;
+  const csel=document.getElementById('cmpsel'); if(csel&&csel.options[0]) csel.options[0].text=t.compare_sel;
+  const cmpBtns=document.querySelectorAll('.cmp-top .btn-p, .cmp-top .btn-d');
+  if(cmpBtns[0]) cmpBtns[0].textContent=t.compare_add;
+  if(cmpBtns[1]) cmpBtns[1].textContent=t.compare_clear;
+  if(cmpBtns[2]) cmpBtns[2].textContent=t.compare_ai;
+  // تبويبات المقارنة
+  const ctabs=document.querySelectorAll('.ctab');
+  const ctKeys=['cmp_all','cmp_econ','cmp_mil','cmp_stab','cmp_wealth'];
+  ctabs.forEach((b,i)=>{ if(ctKeys[i]) b.textContent=t[ctKeys[i]]; });
+  const cmpAiBtn=document.querySelector('.cmp-ai-btn'); if(cmpAiBtn) cmpAiBtn.textContent=t.cmp_ai_btn;
+  // التاريخ
+  const tttl=document.querySelector('.tsec .sec-ttl'); if(tttl) tttl.textContent=t.time_title;
+  const tBtns=document.querySelectorAll('.tctrl .btn-p');
+  if(tBtns[0]) tBtns[0].textContent=t.time_go;
+  if(tBtns[1]) tBtns[1].textContent=t.time_ai;
+  // تأثير الفراشة
+  const bttl=document.querySelector('.bsec .sec-ttl'); if(bttl) bttl.textContent=t.butterfly_title;
+  const bdsc=document.querySelector('.bsec p'); if(bdsc) bdsc.textContent=t.butterfly_desc;
+  // وضع التعلم
+  const tcttl=document.querySelector('.tcsec .sec-ttl'); if(tcttl) tcttl.textContent=t.teacher_title;
+  // نافذة الدولة
+  const abBtns=document.querySelectorAll('.pact .ab');
+  if(abBtns[0]) abBtns[0].textContent=t.pop_compare;
+  if(abBtns[1]) abBtns[1].textContent=t.pop_ai;
+  if(abBtns[2]) abBtns[2].textContent=t.pop_speak;
+  // placeholder البحث في وقت التاريخ
+  const yinp=document.getElementById('yinp'); if(yinp) yinp.placeholder=LANG==='ar'?'1900 - 2025':'1900 - 2025';
+}
+
+function toggleLang() {
+  LANG = LANG==='ar' ? 'en' : 'ar';
+  applyLang();
+  notify(LANG==='ar'?'🌐 تم التبديل للعربية':'🌐 Switched to English','','🌐');
+}
+
+window.addEventListener('resize',()=>{if(ren){const cv=document.getElementById('gc');const W=cv.parentElement.clientWidth,H=Math.max(400,cv.parentElement.clientHeight-55);ren.setSize(W,H);cam.aspect=W/H;cam.updateProjectionMatrix();}});
+
+// ✅ زر الرجوع للأعلى
+window.addEventListener('scroll',()=>{
+  const btn = document.getElementById('scrollTop');
+  if(window.scrollY > 300) { btn.style.display='flex'; }
+  else { btn.style.display='none'; }
+});
+
+// ═══════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════
+window.addEventListener('load', async ()=>{
+  const statuses=['LOADING 3D GLOBE...','CONNECTING TO NEWSDATA.IO...','INITIALIZING GEMINI AI...','LOADING WEATHER ENGINE...','BUILDING COMPARISON ENGINE...','READY ✓'];
+  let si=0;
+  const stEl=document.getElementById('ldst');
+  const iv=setInterval(()=>{stEl.textContent=statuses[si++];if(si>=statuses.length)clearInterval(iv);},480);
+
+  setTimeout(async()=>{
+    document.getElementById('ld').style.opacity='0';
+    document.getElementById('ld').style.transition='opacity .8s';
+    setTimeout(async()=>{
+      document.getElementById('ld').style.display='none';
+      initStars();
+      initGlobe();
+      renderPower();
+      populateCmpSel();
+      renderCmpSlots();
+      renderButterfly();
+      renderTeacher();
+      travelTime();
+      await loadNews(true);
+      notify('🌍 مرحباً في WORLD PULSE ','أخبار حية','🚀');
+    },800);
+  },2800);
+});
+</script>
+</body>
+</html>
